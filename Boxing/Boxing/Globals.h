@@ -14,6 +14,4 @@
 // Display lists
 #define TRIBUNE_LIST 1 
 #define ROPES_LIST 2 
-
-
-
+#define BOXER_LIST 3 

@@ -10,6 +10,8 @@ bool rotateArms = false;
 bool rotateAll = false;
 
 void draw_boxer() {
+
+	glNewList(BOXER_LIST, GL_COMPILE);
 	glPushMatrix();
 		glTranslatef(0., FLOOR_Y_B, 0.);
 		glColor3ub(100, 0.5, 0.5);
@@ -22,6 +24,16 @@ void draw_boxer() {
 		draw_hands();
 		glColor3f(1, 0.5, 0.5);
 		draw_legs();
+	glPopMatrix();
+	glEndList();
+
+	// Draw the four sides of ropes, every time rotate by 90 degrees
+	glPushMatrix();
+		glCallList(BOXER_LIST);
+		glTranslatef(0., 0., 80.);
+		glRotatef(-180., 0., 1., 0.);
+		glCallList(BOXER_LIST);
+		
 	glPopMatrix();
 }
 
@@ -93,36 +105,37 @@ void draw_neck() {
 
 // This method draws man body
 void draw_body() {
-	bodyPos = neckPos - (NECK_RADIUS * NECK_RADIUS_WIDTH_SCALE) - BODY_RADIUS_HEIGHT;
+	bodyPos = neckPos - (NECK_RADIUS * NECK_RADIUS_WIDTH_SCALE) - BODY_HEIGHT;
 
 	glPushMatrix();
 		glTranslatef(0., bodyPos, 0.);
+		glScalef(1., 1., 0.65);
+		glRotatef(-90., 1., 0., 0.);
+		
+		GLfloat mat_amb_dif1[] = { 0.0, 1.0, 0.0, 1.0 }; //color of material: green
+		glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mat_amb_dif1);//function specified the material properties 
 
-		rotateToFixZ();
-		glScalef(BODY_RADIUS_WIDTH_SCALE*1.8, BODY_RADIUS_WIDTH_SCALE, 1.);
+		GLUquadricObj *myCylinder;
+		myCylinder = gluNewQuadric();
+		gluQuadricDrawStyle(myCylinder, GLU_FILL); //try: gluQuadricDrawStyle(quadObj, GLU_LINE);
+		gluCylinder(myCylinder, BODY_RADIUS_WIDTH, BODY_RADIUS_WIDTH_TOP, BODY_HEIGHT, 16, 16);
 
-		glutWireSphere(BODY_RADIUS_HEIGHT, 14, 14); //(radius, slices-vertical[פרוסות], stacks-horizontal);
-
+		gluDeleteQuadric(myCylinder);
 	glPopMatrix();
 }
 
 // This method draws man hands
 void draw_hands() {
 	float rightArmX = BODY_RADIUS_HEIGHT * BODY_RADIUS_WIDTH_SCALE * 2;
-		//bodyPos - (BODY_RADIUS_HEIGHT * BODY_RADIUS_WIDTH_SCALE * 2) - (HAND_RADIUS_HEIGHT * HAND_RADIUS_WIDTH_SCALE);
-	float rightArmY = bodyPos + (HAND_RADIUS_HEIGHT);
+	float rightArmY = bodyPos + BODY_HEIGHT;
 	float leftArmX = -rightArmX;
 	float leftArmY = rightArmY;
 
 	glPushMatrix();
 	glTranslatef(rightArmX, rightArmY, 0.);
-	glRotatef(90, 1., 0., 0.); // Put axis Z up (by rotating the sphere around axes X to 90 degrees)                                          
+	//glRotatef(90, 1., 0., 0.); // Put axis Z up (by rotating the sphere around axes X to 90 degrees)                                          
 	glRotatef(150, 0., 1., 0.);
 
-	// If rotate arms
-	if (rotateArms) {
-		glRotatef(arm_angle, 1., 0., 0.); // Rotate around new position of axis Z - here new! angle every time (angle grows)
-	}
 
 	glScalef(HAND_RADIUS_WIDTH_SCALE, HAND_RADIUS_WIDTH_SCALE, 1.0);
 
@@ -130,13 +143,8 @@ void draw_hands() {
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(leftArmX, leftArmY, 0.);
-	glRotatef(90, 1., 0., 0.); // Put axis Z up (by rotating the sphere around axes X to 90 degrees)                                          
+	//glRotatef(90, 1., 0., 0.); // Put axis Z up (by rotating the sphere around axes X to 90 degrees)                                          
 	glRotatef(-150, 0., 1., 0.);
-
-	// If rotate arms
-	if (rotateArms) {
-		glRotatef(arm_angle, 1., 0., 0.); // Rotate around new position of axis Z - here new! angle every time (angle grows)
-	}
 
 	glScalef(HAND_RADIUS_WIDTH_SCALE, HAND_RADIUS_WIDTH_SCALE, 1.0);
 
@@ -152,12 +160,8 @@ void draw_hands() {
 	glPushMatrix();
 	glTranslatef(rightForearmX, rightForearmY, 0.);
 	glRotatef(90, 1., 0., 0.); // Put axis Z up (by rotating the sphere around axes X to 90 degrees)                                          
-	glRotatef(70, 0., 1., 0.2);
+	//glRotatef(70, 0., 1., 0.2);
 
-	// If rotate arms
-	if (rotateArms) {
-		glRotatef(arm_angle, 0.7, 0., 0.);
-	}
 
 	glScalef(HAND_RADIUS_WIDTH_SCALE / 1.5, HAND_RADIUS_WIDTH_SCALE / 1.5, 1.0);
 
@@ -166,12 +170,7 @@ void draw_hands() {
 	glPushMatrix();
 	glTranslatef(leftForearmX, leftForearmY, 0);
 	glRotatef(90, 1., 0., 0.); // Put axis Z up (by rotating the sphere around axes X to 90 degrees)                                          
-	glRotatef(165, 0., 1., 0.);
-
-	// If rotate arms
-	if (rotateArms) {
-		glRotatef(arm_angle, 0.7, 0., 0.);
-	}
+	//glRotatef(165, 0., 1., 0.);
 
 	glScalef(HAND_RADIUS_WIDTH_SCALE / 1.5, HAND_RADIUS_WIDTH_SCALE / 1.5, 1.0);
 
@@ -181,8 +180,8 @@ void draw_hands() {
 
 // This method draws man legs
 void draw_legs() {
-	float rightThighX =
-		bodyPos - (BODY_RADIUS_HEIGHT * BODY_RADIUS_WIDTH_SCALE*1.8 / 1.2);
+	float rightThighX = BODY_RADIUS_HEIGHT * BODY_RADIUS_WIDTH_SCALE * 2;
+		//bodyPos - (BODY_RADIUS_HEIGHT * BODY_RADIUS_WIDTH_SCALE*1.8 / 1.2);
 	float rightThighY = bodyPos - BODY_RADIUS_HEIGHT - LEGS_RADIUS_HEIGHT + (LEGS_RADIUS_HEIGHT / 2);
 	float leftThighX = -rightThighX;
 	float leftThighY = rightThighY;
@@ -281,3 +280,4 @@ void rotateToFixZ() {
 		glRotatef(angle, 0., 0., 1.); // Rotate around new position of axis Z - here new! angle every time (angle grows)
 	}
 }
+

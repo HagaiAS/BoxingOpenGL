@@ -11,6 +11,11 @@ const GLdouble NECK_RADIUS = 6;
 const GLdouble NECK_RADIUS_WIDTH_SCALE = 0.6;
 
 const GLdouble BODY_RADIUS_HEIGHT = 60;
+const GLdouble BODY_HEIGHT = 90;
+
+const GLdouble BODY_RADIUS_WIDTH_TOP = 35;
+const GLdouble BODY_RADIUS_WIDTH = 25;
+
 const GLdouble BODY_RADIUS_WIDTH_SCALE = 0.3;
 
 const GLdouble HAND_RADIUS_HEIGHT = 20;

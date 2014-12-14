@@ -91,8 +91,6 @@ void my_display(void)
 	// Rotate the whole man parts together anticlockwise
 	//glRotatef(body_angle, 0., 1., 0.);
 
-	draw_boxer();
-	
 	//draw_axes();
 
 	glColor3ub(255, 255, 0);
@@ -100,6 +98,7 @@ void my_display(void)
 	//draw_ball();
 	draw_tribunes();
 	draw_arena();
+	draw_boxer();
 
 	glutSwapBuffers(); // for animation
 }
