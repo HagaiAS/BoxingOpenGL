@@ -1,13 +1,47 @@
-﻿Build started 12/14/2014 3:33:51 PM.
+﻿Build started 12/14/2014 7:52:04 PM.
      1>Project "D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Boxing\Boxing.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Boxing.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /showIncludes /analyze- /errorReport:prompt Boxing.cpp AnimateMan.cpp
+         AnimateMan.cpp
          Boxing.cpp
+         Note: including file: d:\הראל\לימודים\גרפיקה\boxingopengl\boxing\boxing\Arena.h
+         Note: including file:  d:\הראל\לימודים\גרפיקה\boxingopengl\boxing\boxing\Globals.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\time.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\sal.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ConcurrencySal.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vadefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wtime.inl
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\time.inl
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdlib
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\yvals.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xkeycheck.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\use_ansi.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits.h
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\glut.h
+         Note: including file:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\GL/gl.h
+         Note: including file:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
+         Note: including file:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\GL/glu.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file: d:\הראל\לימודים\גרפיקה\boxingopengl\boxing\boxing\Tribune.h
+         Note: including file: d:\הראל\לימודים\גרפיקה\boxingopengl\boxing\boxing\Boxer.h
+         Note: including file: d:\הראל\לימודים\גרפיקה\boxingopengl\boxing\boxing\World.h
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.lib" /MACHINE:X86 Debug\Boxing.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.lib" /MACHINE:X86 Debug\Boxer.obj
+         Debug\Boxing.obj
+         Debug\Arena.obj
+         Debug\AnimateMan.obj
+         Debug\Tribune.obj
+         Debug\World.obj
          Boxing.vcxproj -> D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Debug\Boxing.exe
      1>Done Building Project "D:\הראל\לימודים\גרפיקה\BoxingOpenGL\Boxing\Boxing\Boxing.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.40
+Time Elapsed 00:00:00.37

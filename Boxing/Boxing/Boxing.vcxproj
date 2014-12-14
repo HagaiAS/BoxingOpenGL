@@ -53,6 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <ShowIncludes>true</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -78,7 +79,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boxer.cpp" />
     <ClCompile Include="Boxing.cpp" />
+    <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="AnimateMan.cpp" />
+    <ClCompile Include="Tribune.cpp" />
+    <ClCompile Include="World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Arena.h" />
+    <ClInclude Include="Boxer.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Crowd.h" />
+    <ClInclude Include="Entrance.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Tribune.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
