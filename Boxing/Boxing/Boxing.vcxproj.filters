@@ -30,7 +30,7 @@
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimateMan.cpp">
+    <ClCompile Include="Entrance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,10 @@
 #pragma once
+#include <iostream>
 #include "time.h"
 #include "cstdlib"
 #include <glut.h> 
 #include <math.h> 
+
 
 #define WINDOW_HEIGHT 768
 #define WINDOW_WIDTH 1280
@@ -15,3 +17,4 @@
 #define TRIBUNE_LIST 1 
 #define ROPES_LIST 2 
 #define BOXER_LIST 3 
+#define ENTRANCE_LIST 4

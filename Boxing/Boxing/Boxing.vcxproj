@@ -82,7 +82,7 @@
     <ClCompile Include="Boxer.cpp" />
     <ClCompile Include="Boxing.cpp" />
     <ClCompile Include="Arena.cpp" />
-    <ClCompile Include="AnimateMan.cpp" />
+    <ClCompile Include="Entrance.cpp" />
     <ClCompile Include="Tribune.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>

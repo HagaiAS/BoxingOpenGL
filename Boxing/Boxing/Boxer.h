@@ -48,5 +48,4 @@ void draw_body();
 void draw_hands();
 void draw_legs();
 void draw_face();
-void draw_ball();
 void rotateToFixZ();

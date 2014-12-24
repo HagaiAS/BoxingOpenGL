@@ -33,7 +33,6 @@ void draw_boxer() {
 		glTranslatef(0., 0., 80.);
 		glRotatef(-180., 0., 1., 0.);
 		glCallList(BOXER_LIST);
-		
 	glPopMatrix();
 }
 

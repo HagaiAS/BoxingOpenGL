@@ -12,6 +12,11 @@ const GLdouble WORLD_HEIGHT_A = WINDOW_HEIGHT - (WINDOW_HEIGHT / 10);
 const GLdouble FLOOR_Y_A = -WORLD_HEIGHT_A / 2;
 const GLdouble FRONT_Z_WALL_A = WORLD_WIDTH_A / 2;
 
+const GLfloat ARENA_AMBIENT_DIFFUSE[] = { 1.0, 0.0, 0.0, 0.1 }; //color of material: red
+const GLfloat ARENA_SPECULAR[] = { 1.0, 0.0, 0.0, 0.0 }; //colors of reflection of material:white
+const GLfloat ARENA_SHININESS[] = { 10.0 };
+
 void draw_arena(void);
 void draw_corners(void);
 void draw_ropes(void);
+void setArenaMaterial(void);
