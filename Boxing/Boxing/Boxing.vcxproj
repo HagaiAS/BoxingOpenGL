@@ -79,21 +79,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Boxer.cpp" />
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Boxers.cpp" />
     <ClCompile Include="Boxing.cpp" />
     <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Crowd.cpp" />
     <ClCompile Include="Entrance.cpp" />
+    <ClCompile Include="Inputs.cpp" />
+    <ClCompile Include="Man.cpp" />
     <ClCompile Include="Tribune.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arena.h" />
-    <ClInclude Include="Boxer.h" />
+    <ClInclude Include="Boxers.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Crowd.h" />
     <ClInclude Include="Entrance.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="Body.h" />
+    <ClInclude Include="Inputs.h" />
     <ClInclude Include="Tribune.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
