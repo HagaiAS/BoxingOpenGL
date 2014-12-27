@@ -392,12 +392,3 @@ void change_size(int w, int h)	{
 //	glMatrixMode(GL_MODELVIEW);
 //	glLoadIdentity();
 //}
-
-// This method change the angles for each draw
-void my_idle(void)
-{
-	// Call redisplay again
-	change_size(WINDOW_WIDTH, WINDOW_HEIGHT);
-	glutPostRedisplay();
-}
-

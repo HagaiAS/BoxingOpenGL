@@ -2,7 +2,8 @@
 
 const GLdouble BoxersDistance = 80.0;
 
-void Boxers::draw_boxer1()
+// Draw red boxer
+void Boxers::draw_boxer1(GLfloat movingX)
 {
 	GLfloat BoxerAngles1[17] =
 	{
@@ -13,10 +14,8 @@ void Boxers::draw_boxer1()
 	};
 
 	glPushMatrix();
-	glTranslatef(0., FLOOR_Y_B, -BoxersDistance);
-		//glClearColor(1, 1, 0.5, 0.0);
-		glColor3ub(0, 0, 0);
-		glColor3f(1, 0.5, 0.5);
+		glTranslatef(movingX, FLOOR_Y_B, -BoxersDistance);
+		glColor3f(0.7, 0., 0.);
 		draw_body(BoxerAngles1);
 	glPopMatrix();
 
@@ -43,7 +42,8 @@ void Boxers::draw_boxer1()
 	//glEndList();
 }
 
-void Boxers::draw_boxer2()
+// Draw blue boxer
+void Boxers::draw_boxer2(GLfloat movingX)
 {
 	GLfloat BoxerAngles2[17] =
 	{
@@ -54,10 +54,9 @@ void Boxers::draw_boxer2()
 	};
 
 	glPushMatrix();		
-	glTranslatef(0., FLOOR_Y_B, BoxersDistance);
+		glTranslatef(movingX, FLOOR_Y_B, BoxersDistance);
 		glRotatef(-180., 0., 1., 0.);
-		glColor3ub(0, 0, 0);
-		glColor3f(2, 2.5, 2.5);
+		glColor3f(0., 0.3, 1.0);
 		draw_body(BoxerAngles2);
 	glPopMatrix();
 }

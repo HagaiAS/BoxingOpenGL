@@ -19,7 +19,10 @@ using std::endl;
 
 Boxers boxers;
 Crowd crowd;
-
+GLfloat BOXER_RED_MOVING_X = 0.;
+GLfloat BOXER_RED_MOVING_SPEED = 4.0;
+GLfloat BOXER_BLUE_MOVING_X = 0.;
+GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
 
 //--------------------------------Initialization function-------------------------
 void my_init(void)
@@ -68,18 +71,39 @@ void my_display(void)
 	draw_arena();
 	draw_entrance();
 	crowd.draw_crowds();
-	boxers.draw_boxer1();
-	boxers.draw_boxer2();
-	//glPushMatrix();
-	//	glCallList(CROWD_LIST);		
-	//	//glTranslatef(0., 0., 80.);
-	//	//glRotatef(-180., 0., 1., 0.);
-	//	//draw one more boxer.
-	//	glCallList(CROWD_LIST);
-	//glPopMatrix();
-	
+	boxers.draw_boxer1(BOXER_RED_MOVING_X);
+	boxers.draw_boxer2(BOXER_BLUE_MOVING_X);
 
 	glutSwapBuffers(); // for animation
+}
+
+// This method change the angles for each draw
+void my_idle(void)
+{
+	// If the red boxer is inside the arena - move it
+	if ((ARENA_SIZE / 2) >= abs(BOXER_RED_MOVING_X + BOXER_RED_MOVING_SPEED) + TORSO_RADIUS)
+	{
+		BOXER_RED_MOVING_X += BOXER_RED_MOVING_SPEED;
+	}
+	else
+	{
+		// Change red boxer moving direction
+		BOXER_RED_MOVING_SPEED *= -1;
+	}
+
+	// If the blue boxer is inside the arena - move it
+	if ((ARENA_SIZE / 2) >= abs(BOXER_BLUE_MOVING_X + BOXER_BLUE_MOVING_SPEED) + TORSO_RADIUS)
+	{
+		BOXER_BLUE_MOVING_X += BOXER_BLUE_MOVING_SPEED;
+	}
+	else
+	{
+		// Change blue boxer moving direction
+		BOXER_BLUE_MOVING_SPEED *= -1;
+	}
+
+	// Call redisplay again
+	glutPostRedisplay();
 }
 
 
@@ -134,9 +158,6 @@ void main(int argc, char **argv)
 //------------------------------------------------
 //------------------------------------------------
 //------------------------------------------------
-
-
-
 
 //void fillRandomColor() {
 //

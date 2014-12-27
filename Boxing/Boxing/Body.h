@@ -1,7 +1,7 @@
 #pragma once
 #include "Globals.h"
 
-const GLfloat BODY_SCALE = 12;
+const GLfloat BODY_SCALE = 8;
 const GLfloat TORSO_HEIGHT = 5.0 * BODY_SCALE;
 const GLfloat TORSO_RADIUS = 1.3 * BODY_SCALE;
 const GLfloat UPPER_ARM_HEIGHT = 2.5 * BODY_SCALE;

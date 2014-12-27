@@ -31,23 +31,23 @@ void draw_lamp()
 
 	// TODO: REMOVE THAT
 	//x - blue
-	glPushMatrix();
-		glTranslatef(100, 0., 0.);
-		glColor3f(0., 0., 0.8);
-		glutWireSphere(10, 10, 10);
-	glPopMatrix();
-	//y - purple
-	glPushMatrix();
-		glTranslatef(0., 200., 0.);
-		glColor3f(0.6, 0., 0.6);
-		glutWireSphere(10, 10, 10);
-	glPopMatrix();
-	//z - green
-	glPushMatrix();
-		glTranslatef(0., 0., 100.);
-		glColor3f(0., 0.9, 0.0);
-		glutWireSphere(10, 10, 10);
-	glPopMatrix();
+	//glPushMatrix();
+	//	glTranslatef(100, 0., 0.);
+	//	glColor3f(0., 0., 0.8);
+	//	glutWireSphere(10, 10, 10);
+	//glPopMatrix();
+	////y - purple
+	//glPushMatrix();
+	//	glTranslatef(0., 200., 0.);
+	//	glColor3f(0.6, 0., 0.6);
+	//	glutWireSphere(10, 10, 10);
+	//glPopMatrix();
+	////z - green
+	//glPushMatrix();
+	//	glTranslatef(0., 0., 100.);
+	//	glColor3f(0., 0.9, 0.0);
+	//	glutWireSphere(10, 10, 10);
+	//glPopMatrix();
 }
 
 void draw_world() {

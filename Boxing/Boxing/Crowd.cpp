@@ -65,19 +65,11 @@ void Crowd::draw_crowds()
 
 	// Draw the four tribunes with crowds, every time rotate by 90 degrees
 	glPushMatrix();
-		glColor3ub(0, 0, 0);
-		glColor3f(1, 0.5, 0.5);
 		glCallList(CROWD_LIST);
-		glColor3ub(0, 0, 0);
-		glColor3f(2, 2.5, 2.5);
 		glRotatef(90., 0., 1., 0.);
 		glCallList(CROWD_LIST);
-		glColor3ub(0, 0, 0);
-		glColor3f(1, 0.5, 0.5);
 		glRotatef(90., 0., 1., 0.);
 		glCallList(CROWD_LIST);
-		glColor3ub(0, 0, 0);
-		glColor3f(2, 2.5, 2.5);
 		glRotatef(90., 0., 1., 0.);
 		glCallList(CROWD_LIST);
 	glPopMatrix();
@@ -86,10 +78,7 @@ void Crowd::draw_crowds()
 void Crowd::draw_crowd()
 {
 	glPushMatrix();		
-		//glTranslatef(0., 0., -CrowdDistance);
-		//glClearColor(1, 1, 0.5, 0.0);
-		glColor3ub(0, 0, 0);
-		glColor3f(1, 0.5, 0.5);
+		glColor3f(1., 1.0, 0.9);
 		draw_body(crowdAngles);
 	glPopMatrix();
 }
