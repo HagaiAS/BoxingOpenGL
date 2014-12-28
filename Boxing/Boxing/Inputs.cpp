@@ -292,23 +292,8 @@ void special_key_input(int key, int x, int y)
 		glLoadIdentity();
 	}
 
-	//animation walk
-	if (key == GLUT_KEY_F1)
-	{
-		glutTimerFunc(100, timer_walk, 0);
-		glLoadIdentity();
-	}
-
-	//animation kick
-	if (key == GLUT_KEY_F2)
-	{
-		glutTimerFunc(100, timer_kick, 0);
-		glLoadIdentity();
-	}
-
 	glutPostRedisplay();
 }
-
 
 // Place camera
 void place_camera()
@@ -336,8 +321,6 @@ void place_camera()
 	glRotatef(sceneroty, 0, 1.0f, 0);
 
 	glTranslatef(xtrans, ytrans, ztrans);
-	// Rotate the whole man parts together anticlockwise
-	//glRotatef(body_angle, 0., 1., 0.);
 }
 
 
@@ -358,7 +341,7 @@ void change_size(int w, int h)	{
 	glViewport(0, 0, w, h);
 
 	// Set the clipping volume
-	gluPerspective(45, ratio, INSIDE_EDGE, OUTSIDE_EDGE);
+	gluPerspective(45, ratio, 1, OUTSIDE_EDGE);
 	glTranslatef(0., 0., OUTSIDE_EDGE * 2);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

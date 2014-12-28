@@ -2,57 +2,53 @@
 
 const GLdouble BoxersDistance = 80.0;
 
+/*
+Define of body properties
+*/
+bool flag1 = true;
+bool flag2 = false;
+bool flag3 = true;
+bool flag4 = false;
+bool flag5 = true;
+bool flag6 = false;
+bool hflag = true;
+
+GLfloat BoxerAng1[17] =
+{
+	0.0, 0.0, 0.0, 30.0,
+	-120.0, 40.0, -80.0, 180.0,
+	10.0, 180.0, 40.0, 5.0,
+	0.0, 0.0, 0.0, 20.0, 0.0
+};
+
+GLfloat BoxerAng2[17] =
+{
+	52.0, 0.0, 0.0, 10.0,
+	-80.0, 40.0, -30.0, 180.0,
+	10.0, 180.0, 30.0, 5.0,
+	30.0, 0.0, 0.0, 20.0, 0.0
+};
+
+// Default Ctor
+Boxers::Boxers()
+{
+	BoxerAngles1 = BoxerAng1;
+	BoxerAngles2 = BoxerAng2;
+}
+
 // Draw red boxer
 void Boxers::draw_boxer1(GLfloat movingX)
 {
-	GLfloat BoxerAngles1[17] =
-	{
-		0.0, 0.0, 0.0, 30.0,
-		-120.0, 40.0, -80.0, 180.0,
-		10.0, 180.0, 40.0, 5.0,
-		0.0, 0.0, 0.0, 20.0, 0.0
-	};
-
 	glPushMatrix();
 		glTranslatef(movingX, FLOOR_Y_B, -BoxersDistance);
 		glColor3f(0.7, 0., 0.);
 		draw_body(BoxerAngles1);
 	glPopMatrix();
-
-	// Draw the four sides of ropes, every time rotate by 90 degrees
-	//glPushMatrix();
-		//glCallList(BOXER_LIST);
-		//glTranslatef(0., 0., 80.);
-		//glRotatef(-180., 0., 1., 0.);
-		//draw one more boxer.
-		//glCallList(BOXER_LIST);
-	//glPopMatrix();
-
-	//glNewList(BOXER_LIST, GL_COMPILE);
-		//glPushMatrix();
-		//glClearColor(1, 1, 0.5, 0.0);
-		//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//glLoadIdentity();
-		//glColor3f(0.0, 0.0, 0.0);
-		//glColor3ub(0, 0, 0);
-		//BoxerBody.drawBody();
-		//glFlush();
-		//glutSwapBuffers();
-		//glPopMatrix();
-	//glEndList();
 }
 
 // Draw blue boxer
 void Boxers::draw_boxer2(GLfloat movingX)
 {
-	GLfloat BoxerAngles2[17] =
-	{
-		52.0, 0.0, 0.0, 10.0,
-		-80.0, 40.0, -30.0, 180.0,
-		10.0, 180.0, 30.0, 5.0,
-		30.0, 0.0, 0.0, 20.0, 0.0
-	};
-
 	glPushMatrix();		
 		glTranslatef(movingX, FLOOR_Y_B, BoxersDistance);
 		glRotatef(-180., 0., 1., 0.);
@@ -61,14 +57,113 @@ void Boxers::draw_boxer2(GLfloat movingX)
 	glPopMatrix();
 }
 
-//void Boxers::animate_boxers_walk(void)
-//{
-//	
-//
-//}
-//
-//void Boxers::animate_boxers_fight(void) 
-//{
-//
-//
-//}
+//--------------------------------Animation functions-----------------------
+void Boxers::animate_boxers_walk(GLfloat* BoxerAngles)
+{
+	if (flag1) {
+		BoxerAngles[3] += 5.0;
+	}
+	else {
+		BoxerAngles[3] -= 5.0;
+	}
+	if (BoxerAngles[3] >= 110.0) flag1 = false;
+	if (BoxerAngles[3] <= 70.0)  flag1 = true;
+
+	if (flag2) {
+		BoxerAngles[5] += 5.0;
+	}
+	else {
+		BoxerAngles[5] -= 5.0;
+	}
+	if (BoxerAngles[5] >= 110.0) flag2 = false;
+	if (BoxerAngles[5] <= 70.0)  flag2 = true;
+
+	if (flag3) {
+		BoxerAngles[9] += 5.0;
+	}
+	else {
+		BoxerAngles[9] -= 5.0;
+	}
+	if (BoxerAngles[9] >= 200.0) flag3 = false;
+	if (BoxerAngles[9] <= 160.0)  flag3 = true;
+
+	if (flag4) {
+		BoxerAngles[7] += 5.0;
+	}
+	else {
+		BoxerAngles[7] -= 5.0;
+	}
+	if (BoxerAngles[7] >= 200.0) flag4 = false;
+	if (BoxerAngles[7] <= 160.0)  flag4 = true;
+
+	if (hflag) {
+		BoxerAngles[2] += 5.0;
+	}
+	else {
+		BoxerAngles[2] -= 5.0;
+	}
+	if (BoxerAngles[2] >= 30.0) hflag = false;
+	if (BoxerAngles[2] <= -30.0) hflag = true;
+
+	glutPostRedisplay();
+}
+
+void Boxers::animate_boxers_fight(GLfloat* BoxerAngles)
+{
+	if (flag1) {
+		BoxerAngles[3] -= 15.0;
+	}
+	else {
+		BoxerAngles[3] += 15.0;
+	}
+	if (BoxerAngles[3] >= 60) flag1 = true;
+	if (BoxerAngles[3] <= 0)  flag1 = false;	// 0-45
+
+	if (flag2) {
+		BoxerAngles[4] -= 30;
+	}
+	else {
+		BoxerAngles[4] += 30;
+	}
+	if (BoxerAngles[4] >= 0) flag2 = true;
+	if (BoxerAngles[4] <= -120)  flag2 = false;
+	BoxerAngles[11] = -15;	// 0
+
+	if (flag3) {
+		BoxerAngles[5] -= 15.0;
+	}
+	else {
+		BoxerAngles[5] += 15.0;
+	}
+	if (BoxerAngles[5] >= 60) flag3 = true;
+	if (BoxerAngles[5] <= 0)  flag3 = false;	// 0-45
+
+	if (flag4) {
+		BoxerAngles[6] -= 30;
+	}
+	else {
+		BoxerAngles[6] += 30;
+	}
+	if (BoxerAngles[6] >= 0) flag4 = true;
+	if (BoxerAngles[6] <= -120)  flag4 = false;
+
+	if (flag5) {
+		BoxerAngles[9] += 10.0;
+	}
+	else {
+		BoxerAngles[9] -= 10.0;
+	}
+	if (BoxerAngles[9] >= 200.0) flag5 = false;
+	if (BoxerAngles[9] <= 160.0)  flag5 = true;
+
+	if (flag6) {
+		BoxerAngles[7] += 10.0;
+	}
+	else {
+		BoxerAngles[7] -= 10.0;
+	}
+	if (BoxerAngles[7] >= 200.0) flag6 = false;
+	if (BoxerAngles[7] <= 160.0)  flag6 = true;
+
+	glutPostRedisplay();
+}

@@ -1,4 +1,3 @@
-//================================Body====================================
 #include "Body.h"
 
 /*
@@ -7,21 +6,13 @@ Initialization of body parts' angles
 GLfloat *theta;
 
 /*
-Define of body properties
-*/
-bool flag1 = true, flag2 = false,
-flag3 = true, flag4 = false,
-flag5 = true, flag6 = false,
-hflag = true;
-
-/*
 Body parts
 */
-GLUquadricObj *torsoObj, *headObj, *n, *lh,
-	*rh, *lf, *rf, *jp,
-	*lhnd, *lft, *lua, *lla,
-	*rua, *rla, *lll, *rll,
-	*rul, *lul, *rhnd, *rft;
+GLUquadricObj	*torsoObj, *headObj, *n, *lh,
+				*rh, *lf, *rf, *jp,
+				*lhnd, *lft, *lua, *lla,
+				*rua, *rla, *lll, *rll,
+				*rul, *lul, *rhnd, *rft;
 
 /*
 Animation variables and angles
@@ -30,7 +21,6 @@ GLuint texture1 = 0;
 GLuint texture2 = 0;
 GLuint texture3 = 0;
 GLuint texture4 = 0;
-
 
 //--------------------------------draw body functions-------------------------------
 
@@ -330,141 +320,3 @@ void Body::init_body()
 	rll = gluNewQuadric();
 	gluQuadricDrawStyle(rll, GLU_FILL);
 }
-
-//--------------------------------Animation timer functions-----------------------
-void timer_walk(int)
-{
-	if (flag1) {
-		theta[3] += 5.0;
-	}
-	else {
-		theta[3] -= 5.0;
-	}
-	if (theta[3] >= 110.0) flag1 = false;
-	if (theta[3] <= 70.0)  flag1 = true;
-
-	if (flag2) {
-		theta[5] += 5.0;
-	}
-	else {
-		theta[5] -= 5.0;
-	}
-	if (theta[5] >= 110.0) flag2 = false;
-	if (theta[5] <= 70.0)  flag2 = true;
-
-	if (flag3) {
-		theta[9] += 5.0;
-	}
-	else {
-		theta[9] -= 5.0;
-	}
-	if (theta[9] >= 200.0) flag3 = false;
-	if (theta[9] <= 160.0)  flag3 = true;
-
-	if (flag4) {
-		theta[7] += 5.0;
-	}
-	else {
-		theta[7] -= 5.0;
-	}
-	if (theta[7] >= 200.0) flag4 = false;
-	if (theta[7] <= 160.0)  flag4 = true;
-
-	if (hflag) {
-		theta[2] += 5.0;
-	}
-	else {
-		theta[2] -= 5.0;
-	}
-	if (theta[2] >= 30.0) hflag = false;
-	if (theta[2] <= -30.0) hflag = true;
-
-	glutPostRedisplay();
-	glutTimerFunc(100, timer_walk, 0);
-}
-
-void timer_kick(int)
-{
-	if (flag1) {
-		theta[3] -= 15.0;
-	}
-	else {
-		theta[3] += 15.0;
-	}
-	if (theta[3] >= 60) flag1 = true;
-	if (theta[3] <= 0)  flag1 = false;	// 0-45
-
-	if (flag2) {
-		theta[4] -= 30;
-	}
-	else {
-		theta[4] += 30;
-	}
-	if (theta[4] >= 0) flag2 = true;
-	if (theta[4] <= -120)  flag2 = false;
-	theta[11] = -15;	// 0
-
-	if (flag3) {
-		theta[5] -= 15.0;
-	}
-	else {
-		theta[5] += 15.0;
-	}
-	if (theta[5] >= 60) flag3 = true;
-	if (theta[5] <= 0)  flag3 = false;	// 0-45
-
-	if (flag4) {
-		theta[6] -= 30;
-	}
-	else {
-		theta[6] += 30;
-	}
-	if (theta[6] >= 0) flag4 = true;
-	if (theta[6] <= -120)  flag4 = false;
-
-	if (flag5) {
-		theta[9] += 10.0;
-	}
-	else {
-		theta[9] -= 10.0;
-	}
-	if (theta[9] >= 200.0) flag5 = false;
-	if (theta[9] <= 160.0)  flag5 = true;
-
-	if (flag6) {
-		theta[7] += 10.0;
-	}
-	else {
-		theta[7] -= 10.0;
-	}
-	if (theta[7] >= 200.0) flag6 = false;
-	if (theta[7] <= 160.0)  flag6 = true;
-
-	glutPostRedisplay();
-	glutTimerFunc(200, timer_kick, 0);
-}
-
-
-
-//void main(int argc, char **argv)
-//{
-//    glutInit(&argc, argv);
-//    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-//    glutInitWindowSize(WIN_WIDTH,WIN_HEIGHT);
-//	glutInitWindowPosition(50, 50);
-//    glutCreateWindow("Humanoid");
-//    myInit();
-//	glutReshapeFunc(myReshape);
-//    glutDisplayFunc(myDisplay);
-//	glutMotionFunc(pressed_mouse);
-//	glutMouseFunc(mouse);
-//	glutCreateMenu(menu);
-//	glutAddMenuEntry("view_hor/vert", 0);
-//    glutAddMenuEntry("view_zoom_in/out", 1);
-//	glutAddMenuEntry("view_lft-rgt/up-dow", 2);
-//	glutAddMenuEntry("quit", 3);
-//    glutAttachMenu(GLUT_MIDDLE_BUTTON);
-//	glutKeyboardFunc(keyboard);
-//	redisplay_all();
-//    glutMainLoop();
-//}

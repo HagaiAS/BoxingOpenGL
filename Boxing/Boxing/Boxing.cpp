@@ -27,8 +27,6 @@ GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
 //--------------------------------Initialization function-------------------------
 void my_init(void)
 {
-	// This method initialize matrix and colors
-	
 	// Background color = black
 	glClearColor(0, 0, 0, 1);
 
@@ -64,7 +62,6 @@ void my_display(void)
 
 	draw_axes();
 
-	glColor3ub(255, 255, 0);
 	draw_world();
 	draw_lamp();
 	draw_tribunes();
@@ -101,6 +98,11 @@ void my_idle(void)
 		// Change blue boxer moving direction
 		BOXER_BLUE_MOVING_SPEED *= -1;
 	}
+
+	// Move the boxer legs infinity
+	boxers.animate_boxers_walk(boxers.BoxerAngles1);
+	boxers.animate_boxers_walk(boxers.BoxerAngles2);
+	//boxers.animate_boxers_fight();
 
 	// Call redisplay again
 	glutPostRedisplay();

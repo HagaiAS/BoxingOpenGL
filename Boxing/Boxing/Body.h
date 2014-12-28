@@ -30,9 +30,6 @@ const GLdouble WORLD_HEIGHT_B = WINDOW_HEIGHT - (WINDOW_HEIGHT / 10);
 const GLdouble ARENA_FLOOR_Y = (ARENA_Y_SCALE_B * ARENA_SIZE_B);
 const GLdouble FLOOR_Y_B = (-WORLD_HEIGHT_B / 2) + ARENA_FLOOR_Y + LOWER_LEG_HEIGHT + UPPER_LEG_HEIGHT;
 
-void timer_walk(int);
-void timer_kick(int);
-
 class Body
 {
 	public:
