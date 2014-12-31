@@ -51,9 +51,11 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <ShowIncludes>true</ShowIncludes>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,8 +88,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Crowd.cpp" />
     <ClCompile Include="Entrance.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Inputs.cpp" />
-    <ClCompile Include="Man.cpp" />
     <ClCompile Include="Tribune.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -98,11 +100,20 @@
     <ClInclude Include="Crowd.h" />
     <ClInclude Include="Entrance.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="ImageLoader.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="Tribune.h" />
     <ClInclude Include="World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="body.bmp" />
+    <Image Include="gloves.bmp" />
+    <Image Include="legs.bmp" />
+    <Image Include="rockyHand.bmp" />
+    <Image Include="rockyHead.bmp" />
+    <Image Include="rockyShorts.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

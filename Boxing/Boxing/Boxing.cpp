@@ -8,11 +8,14 @@
 #include "Inputs.h"
 #include "Boxers.h"
 #include "Crowd.h"
+#include "ImageLoader.h"
 
 void my_init(void);
 void my_display(void);
 void my_idle(void);
 void printInstructions(void);
+GLuint LoadTexture(const char*);
+GLuint loadTexture(Image*);
 
 using std::cout;
 using std::endl;
@@ -23,13 +26,16 @@ GLfloat BOXER_RED_MOVING_X = 0.;
 GLfloat BOXER_RED_MOVING_SPEED = 4.0;
 GLfloat BOXER_BLUE_MOVING_X = 0.;
 GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
+GLUquadric *quad;
+GLuint rockyHeadTextureId; // The id of the face texture
+GLuint rockyBodyTextureId; // The id of the body texture
 
 //--------------------------------Initialization function-------------------------
 void my_init(void)
 {
 	// Background color = black
 	glClearColor(0, 0, 0, 1);
-
+	
 	// Define the light source
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, LIGHT0_DIFFUSE);
 	glLightfv(GL_LIGHT0, GL_POSITION, LIGHT0_POSITION);
@@ -40,6 +46,16 @@ void my_init(void)
 	glEnable(GL_LIGHT0); 
 	
 	boxers.init_body();
+	crowd.init_body();
+
+	// TODO: check the textures
+	//GLuint texture = LoadTexture("bricks.bmp");
+	Image* headImage = loadBMP("rockyHead.bmp");
+	Image* bodyImage = loadBMP("gloves.bmp");
+	rockyHeadTextureId = loadTexture(headImage);
+	rockyBodyTextureId = loadTexture(bodyImage);
+	delete headImage;
+	delete bodyImage;
 
 	// Set the materials to be tracked by the color
 	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
@@ -55,10 +71,20 @@ void my_display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //DEPTH_BUFFER
 
-	// Return axis to basic position
-	glLoadIdentity();
+	// TODO: check the textures
+	glEnable(GL_TEXTURE_2D);
 
-	place_camera();
+	//Bottom
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	//gluQuadricTexture(quad, 0);
+	//gluSphere(quad, 200, 20, 20);
+	//glBindTexture(GL_TEXTURE_2D, texture);
 
 	draw_axes();
 
@@ -108,17 +134,38 @@ void my_idle(void)
 	glutPostRedisplay();
 }
 
-
 // This method output the instructions to the C++ window
 void printInstructions()
 {
 	cout << "Instructions:" << endl;
-	cout << "Press the left/right/up/down arrow keys to move the whole world." << endl
-		 << "Press [/] to rotate the viewpoint." << endl
-		 << "Press +/- to zoom in/out." << endl
+	cout << "Press the left/right/up/down arrow keys to look at the specific direction." << endl
+		 << "Press SPACE to activate top view." << endl
+		 << "Press W/S to move forward/backward." << endl
+		 //<< "Press A/D to move left/right." << endl
+		 << "Press PAGE UP/PAGE DOWN to move up/down." << endl
 		 << endl
 		 << "In animate mode:" << endl
 		 << "Press the up/down arrow keys to speed up/slow down animation." << endl;
+}
+
+// Makes the image into a texture, and returns the id of the texture
+GLuint loadTexture(Image* image) {
+
+	GLuint textureId;
+	glGenTextures(1, &textureId); //Make room for our texture
+	//glBindTexture(GL_TEXTURE_2D, textureId); //Tell OpenGL which texture to edit
+
+	// Map the image to the texture according to size
+	glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+				0,                            //0 for now
+				GL_RGB,                       //Format OpenGL uses for image
+				image->width, image->height,  //Width and height
+				0,                            //The border of the image
+				GL_RGB, //GL_RGB, because pixels are stored in RGB format
+				GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored as unsigned numbers
+				image->pixels);               //The actual pixel data
+
+	return textureId; //Returns the id of the texture
 }
 
 void main(int argc, char **argv)

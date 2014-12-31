@@ -30,9 +30,6 @@
     <ClCompile Include="Entrance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Man.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Body.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Inputs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,5 +83,28 @@
     <ClInclude Include="Inputs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ImageLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="body.bmp">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="gloves.bmp">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="legs.bmp">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="rockyHand.bmp">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="rockyShorts.bmp">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="rockyHead.bmp">
+      <Filter>Source Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

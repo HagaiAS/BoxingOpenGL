@@ -35,9 +35,15 @@ void Body::torso()
 void Body::head()
 {
 	glPushMatrix();		
+		
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
 		glRotatef(15.0, 0.0, 0.0, 1.0);
 		glScalef(HEAD_HEIGHT, HEAD_HEIGHT, HEAD_RADIUS);
+
+		// TODO: check the textures
+		glBindTexture(GL_TEXTURE_2D, 2);
+		gluQuadricTexture(headObj, 1);
+
 		gluSphere(headObj, 1.0, 10, 10);
 	glPopMatrix();
 }
@@ -109,6 +115,11 @@ void Body::left_upper_leg()
 {
 	glPushMatrix();
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
+		
+		// TODO: check the textures
+		glBindTexture(GL_TEXTURE_2D, 1);
+		gluQuadricTexture(lul, 1);
+
 		gluCylinder(lul,UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT,10,10);
 	glPopMatrix();
 }
@@ -198,7 +209,10 @@ void Body::draw_body(GLfloat *init_theta)
 		right_upper_arm();
 		glTranslatef(0.0, 0.0, UPPER_ARM_HEIGHT);
 		joint_point();
+
+		// TODO: check the textures
 		glBindTexture(GL_TEXTURE_2D, texture4);
+
 		glTranslatef(0.0, 0.1*JOINT_POINT_HEIGHT, 0.0);
 		glRotatef(theta[6], 1.0, 0.0, 0.0);
 		right_lower_arm();
