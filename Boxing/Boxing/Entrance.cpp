@@ -13,7 +13,7 @@ void draw_entrance() {
 				glTranslatef(RIGHT_X_WALL_E, FLOOR_Y_E, FRONT_Z_WALL_E);
 
 				// Draw the top lintel in the specific height
-				glTranslatef(RIGHT_X_WALL_E_DELTA, ENTRANCE_HEIGHT, 0.);
+				glTranslatef(RIGHT_X_WALL_E_DELTA, ENTRANCE_HEIGHT, ENTRANCE_TOP_THICKNESS/2);
 				glTranslatef(-ENTRANCE_TOP_THICKNESS, 0., -ENTRANCE_TOP_THICKNESS); // Insert to the world
 				glRotatef(90., 0., 1., 0.);
 				gluCylinder(gluNewQuadric(), ENTRANCE_TOP_THICKNESS, ENTRANCE_TOP_THICKNESS, ENTRANCE_WIDTH, 30, 30);

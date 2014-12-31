@@ -53,8 +53,8 @@ void draw_lamp()
 
 void draw_world() {
 	glPushMatrix();
-		glColor3f(0., 1., 1.);
+		glColor3f(0.1, 0.1, 0.1);
 		glScalef(1., WORLD_HEIGHT / WORLD_WIDTH, 1.);
-		glutWireCube(WORLD_WIDTH);
+		glutSolidCube(WORLD_WIDTH);
 	glPopMatrix();
 }
