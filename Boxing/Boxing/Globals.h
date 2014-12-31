@@ -19,8 +19,9 @@
 // Display lists
 #define TRIBUNE_LIST 1 
 #define ROPES_LIST 2 
-#define CROWD_LIST 3 
-#define ENTRANCE_LIST 4
+#define ENTRANCE_LIST 3
+#define CROWD_LIST 4
+#define CROWD_ROW_LIST 5
 
 // World
 const GLdouble WORLD_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 10);
@@ -37,6 +38,7 @@ const GLdouble INSIDE_EDGE = WINDOW_WIDTH / 2;
 
 const GLint NUMBER_OF_STAIRS = 5;
 const GLint NUMBER_OF_CROWD_IN_ROW = 9;
+const GLint NUMBER_OF_CROWD_COLORS = 4;
 const GLdouble TRIBUNES_SIZE = (WINDOW_WIDTH / 5) * 1.8;
 const GLdouble TRIBUNES_Y_SCALE = 0.05;
 const GLdouble TRIBUNES_Z_SCALE = 0.5;
