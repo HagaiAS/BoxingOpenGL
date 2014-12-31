@@ -3,139 +3,128 @@
 // Camera constructor.
 Camera::Camera()
 {
-	viewDirection = 0.0;
-	zoomDistance = 30.0;
-	zoomSpeed = 0.15;
+	isTopView = 0;
 
-	x = 0;
-	y = 102;
-	z = 0;
-
-	centerX = 30;
-	centerY = 0;
-	centerZ = 100;
+	initCameraPosition();
 
 	angle = 0.0;
-	angleUpDown = 0.0;
-	rotatingSpeed = 0.08;
-	movingSpeed = 1.15;
-	movingUpDownSpeed = 1.1;
+	rotatingSpeed = 0.04;
+	movingSpeed = 12.0;
 }
 
-// Function to increment camera viewing angle.
-void Camera::incrementViewDirection()
+void Camera::initCameraPosition()
 {
+	x = RIGHT_X_WALL_T;
+	y = FLOOR_Y_T + 150 / 2;
+	z = FRONT_Z_WALL_T * 2;
 
-	float direction = 1;
-	float ydelta = lasty - y;
-
-	if (ydelta > 0) {
-		direction = -1;
-	}
-	else {
-		direction = 1;
-	}
-
-	lasty = y;
-
-	if (direction > 0) {
-		x += x*zoomSpeed;
-		y += y*zoomSpeed;
-		z += z*zoomSpeed;
-	}
-	else {
-		x -= x*zoomSpeed;
-		y -= y*zoomSpeed;
-		z -= z*zoomSpeed;
-	}
-
-	lasty = y;
-	lastx = x;
-
-	//viewDirection += 5.0;
-	//if (viewDirection > 360.0) viewDirection -= 360.0;
-}
-
-// Function to decrement camera viewing angle.
-void Camera::decrementViewDirection()
-{
-	viewDirection -= 5.0;
-	if (viewDirection < 0.0) viewDirection += 360.0;
+	centerX = 0;
+	centerY = 0;
+	centerZ = -1;
 }
 
 void Camera::moveUp()
 {
-	y += movingUpDownSpeed;
+	y += movingSpeed;
+	updateView();
 }
 
 void Camera::moveDown()
 {
-	y -= movingUpDownSpeed;
+	y -= movingSpeed;
+	updateView();
 }
 
 void Camera::moveLeft()
 {
-	moveLeftRight(3);
+	move(-1, 1);
 }
 
 void Camera::moveRight()
 {
-	moveLeftRight(-3);
+	move(1, 1);
 }
 
 void Camera::moveForward()
 {
-	move(1);
+	move(1, 0);
 }
 
 void Camera::moveBackward()
 {
-	move(-1);
+	move(-1, 0);
 }
 
-void Camera::move(GLdouble direction)
+void Camera::move(GLdouble direction, int isHorizontal)
 {
-	x += direction * centerX * movingSpeed;
-	z += direction * centerZ * movingSpeed;
+	// If the moving is horizontal
+	if (isHorizontal) {
+		x += direction * movingSpeed;
+	}
+	else {
+		x += direction * centerX * movingSpeed;
+		z += direction * centerZ * movingSpeed;
+	}
+
+	updateView();
 }
 
-void Camera::moveLeftRight(GLdouble direction)
+void Camera::lookUp()
 {
-	x += direction * movingSpeed;
+	look(rotatingSpeed, 0);
 }
 
-void Camera::turnUp()
+void Camera::lookDown()
 {
-	turnUpDown(rotatingSpeed);
+	look(-rotatingSpeed, 0);
 }
 
-void Camera::turnDown()
+void Camera::lookLeft()
 {
-	turnUpDown(-rotatingSpeed);
+	look(-rotatingSpeed, 1);
 }
 
-void Camera::turnRight()
+void Camera::lookRight()
 {
-	turn(rotatingSpeed);
+	look(rotatingSpeed, 1);
 }
 
-void Camera::turnLeft()
-{
-	turn(-rotatingSpeed);
-}
-
-void Camera::turn(GLdouble direction)
-{
-	angle += direction;
-	centerX = sin(angle);
-	centerZ = -cos(angle);
-}
-
-void Camera::turnUpDown(GLdouble direction)
+void Camera::look(GLdouble direction, int isHorizontal)
 {
 	angle += direction;
-	centerY = sin(angle);
+
+	// If the looking is horizontal
+	if (isHorizontal) {
+		centerX = sin(angle); 
+	}
+	else {
+		centerY = sin(angle);
+	}
+
 	centerZ = -cos(angle);
+	
+	updateView();
+}
+
+void Camera::topView()
+{
+	angle = 0.0;
+	x = 0;
+	z = 0;
+	y = WORLD_HEIGHT;
+	centerX = 0;
+	centerZ = -1;
+	centerY = 0;
+	
+	isTopView = 1;
+	updateView();
+}
+
+void Camera::topViewDisable()
+{
+	isTopView = 0;
+	initCameraPosition();
+	updateView();
 }
 
 GLdouble Camera::getX()
@@ -166,4 +155,35 @@ GLdouble Camera::getCenterY()
 GLdouble Camera::getCenterZ()
 {
 	return centerZ;
+}
+
+// This method load the identity and calls the lookat method
+void Camera::updateView() {
+	glLoadIdentity();
+	
+	// If it is top view
+	if (isTopView) 
+	{
+		gluLookAt(	getX(),
+					getY(),
+					getZ(),
+					getCenterX(),
+					getCenterY(),
+					getCenterZ(),
+					0.0,
+					1.0,
+					0.0);
+	}
+	else 
+	{
+		gluLookAt(	getX(),
+					getY(),
+					getZ(),
+					getX() + getCenterX(),
+					getY() + getCenterY(),
+					getZ() + getCenterZ(),
+					0.0,
+					1.0,
+					0.0);
+	}
 }

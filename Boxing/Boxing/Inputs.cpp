@@ -40,6 +40,7 @@ float		xpos;
 float		zpos;
 GLfloat		ratio = 1.0;
 Camera		camera;
+int isTopViewActive = 0;
 
 //--------------------------------Display area for mouse conrol-------------------
 void area_update(Area* area, int update)
@@ -107,101 +108,164 @@ void keyboard(unsigned char key, int x, int y)
 {
 	switch (key)
 	{
+
+	// if Esc -> Exit the program
 	case 27:
 		exit(0);
 		break;
-	case ']': // Rotate camera.
-		camera.incrementViewDirection();
-		glutPostRedisplay();
-		break;
-	case '[': // Rotate camera.
-		camera.decrementViewDirection();
-		glutPostRedisplay();
-		break;
-	case '+': // Zoom in.
-		camera.decrementZoomDistance();
-		glutPostRedisplay();
-		break;
-	case '-': // Zoom out.
-		camera.incrementZoomDistance();
-		glutPostRedisplay();
-		break;
-	case 'w': // move forward.
-		camera.moveForward();
-		break;
-	case 's': // move backward.
-		camera.moveBackward();
-		break;
-	case 'a': // move left.
-		camera.moveLeft();
-		break;
-	case 'd': // move right.
-		camera.moveRight();
-		break;
+	
+	// If SPACE -> activate top view
+	case 32:
 
-		// TODO: check this
-	case 'c':
-	{
-		xpos -= (float)sin(heading*piover180) * 5.5f;
-		zpos -= (float)cos(heading*piover180) * 5.5f;
-		if (walkbiasangle >= 359.0f)
-		{
-			walkbiasangle = 0.0f;
+		// If need to disable top view
+		if (isTopViewActive) {
+			camera.topViewDisable();
+			isTopViewActive = 0;
 		}
-		else
-		{
-			walkbiasangle += 10;
+		else {
+			camera.topView();
+			isTopViewActive = 1;
 		}
-		walkbias = (float)sin(walkbiasangle * piover180) / 20.0f;
-		break;
-	}
 
-	case 'v':
-	{
-		xpos += (float)sin(heading*piover180) * 5.5f;
-		zpos += (float)cos(heading*piover180) * 5.5f;
-		if (walkbiasangle <= 1.0f)
-		{
-			walkbiasangle = 359.0f;
-		}
-		else
-		{
-			walkbiasangle -= 10;
-		}
-		walkbias = (float)sin(walkbiasangle * piover180) / 20.0f;
 		break;
-	}
 
-	case 'b': // turn left
-	{
-		heading -= 1.0f;
-		yrot = heading;
+	// move forward.
+	case 'W':
+	case 'w': 
+		if (!isTopViewActive) // If top view is not active
+			camera.moveForward();
 		break;
-	}
 
-	case 'n': // turn right
-	{
-		heading += 1.0f;
-		yrot = heading;
+	// move backward.
+	case 'S':
+	case 's': 
+		if (!isTopViewActive) // If top view is not active
+			camera.moveBackward();
 		break;
-	}
 
-	case 'm': // look up
-	{
-		lookupdown -= 1.0f;
-		break;
-	}
+	//// move left.
+	//case 'A':
+	//case 'a': 
+	//	if (!isTopViewActive) // If top view is not active
+	//		camera.moveLeft();
+	//	break;
 
-	case ',': // look down
-	{
-		lookupdown += 1.0f;
-		break;
-	}
+	//// move right.
+	//case 'D':
+	//case 'd': 
+	//	if (!isTopViewActive) // If top view is not active
+	//		camera.moveRight();
+	//	break;
 
+	// default - do nothing
 	default:
 		break;
 	}
 }
+
+// Callback routine for non-ASCII key entry.
+void special_key_input(int key, int x, int y)
+{
+	if (key == GLUT_KEY_LEFT)
+	{
+		camera.lookLeft();
+	}
+
+	if (key == GLUT_KEY_RIGHT)
+	{
+		camera.lookRight();
+	}
+
+	if (key == GLUT_KEY_DOWN)
+	{
+		if (!isTopViewActive) // If top view is not active
+			camera.lookDown();
+	}
+
+	if (key == GLUT_KEY_UP)
+	{
+		if (!isTopViewActive) // If top view is not active
+			camera.lookUp();
+	}
+
+	if (key == GLUT_KEY_PAGE_UP)
+	{
+		if (!isTopViewActive) // If top view is not active
+			camera.moveUp();
+	}
+
+	if (key == GLUT_KEY_PAGE_DOWN)
+	{
+		if (!isTopViewActive) // If top view is not active
+			camera.moveDown();
+	}
+
+	glutPostRedisplay();
+}
+
+// This method occurs every time the window change its size
+void change_size(int w, int h)	{
+
+	// Prevent a divide by zero, when window is too short
+	// (you cant make a window of zero width).
+	if (h == 0) {
+		h = 1;
+	}
+
+	ratio = 1.0f * w / h;
+
+	// Reset the coordinate system before modifying
+	glMatrixMode(GL_PROJECTION); // Load the matrix
+	glLoadIdentity();
+
+	// Set the viewport to be the entire window
+	glViewport(0, 0, w, h);
+
+	// Set the clipping volume
+	gluPerspective(45, ratio, 1, OUTSIDE_EDGE);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	
+	// 1. camera position vector
+	// 2. point of look vector
+	// 3. up vector
+	gluLookAt(camera.getX(),
+			  camera.getY(),
+			  camera.getZ(),
+			  camera.getX() + camera.getCenterX(),
+			  camera.getY() + camera.getCenterY(),
+			  camera.getZ() + camera.getCenterZ(),
+			  0.0,
+			  1.0,
+			  0.0);
+}
+
+
+//--------------------------------Reshape & redisplay functions-------------------
+//void change_size(int w, int h)
+//{
+//	glViewport(0, 0, w, h);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	if (w <= h)
+//		glOrtho(-30.0, 30.0, -30.0 * (GLfloat)h / (GLfloat)w,
+//		30.0 * (GLfloat)h / (GLfloat)w, -200, 200);
+//	else
+//		glOrtho(-30.0 * (GLfloat)w / (GLfloat)h,
+//		30.0 * (GLfloat)w / (GLfloat)h, -30.0, 30.0, -200, 200);
+//
+//	gluPerspective(1.0, (float)w / h, 2.0, 1.0);
+//	gluLookAt(translation[3].value, translation[4].value, eye[2],
+//		at[0], at[1], at[2], up[0], up[1], up[2]);
+//	glTranslatef(translation[0].value, translation[1].value,
+//		translation[2].value);
+//	glEnable(GL_DEPTH_TEST);
+//	glEnable(GL_LIGHTING);
+//	glEnable(GL_LIGHT0);
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
+//}
 
 //{
 //	if (key == 'q') { choise = 2; }		// Head horiz
@@ -262,116 +326,4 @@ void keyboard(unsigned char key, int x, int y)
 //		if (theta[choise] < 360.0) theta[choise] += 360.0;
 //		glutPostRedisplay();
 //	}
-//}
-
-
-// Callback routine for non-ASCII key entry.
-void special_key_input(int key, int x, int y)
-{
-	if (key == GLUT_KEY_LEFT)
-	{
-		camera.turnLeft();
-		glLoadIdentity();
-	}
-
-	if (key == GLUT_KEY_RIGHT)
-	{
-		camera.turnRight();
-		glLoadIdentity();
-	}
-
-	if (key == GLUT_KEY_DOWN)
-	{
-		camera.turnDown();
-		glLoadIdentity();
-	}
-
-	if (key == GLUT_KEY_UP)
-	{
-		camera.turnUp();
-		glLoadIdentity();
-	}
-
-	glutPostRedisplay();
-}
-
-// Place camera
-void place_camera()
-{
-	// 1. camera position vector
-	// 2. point of look vector
-	// 3. up vector (tilt of camera)
-	gluLookAt(	camera.getX(),
-				camera.getY(), 
-				camera.getZ(),
-		//camera.getZoomDistance() * cos(camera.getViewDirection()*Pi / 180.0),
-				camera.getX() + camera.getCenterX(),
-				camera.getY() + camera.getCenterY(),
-				camera.getZ() + camera.getCenterZ(),
-				0.0,
-				1.0,
-				0.0);
-
-	GLfloat x_m, y_m, z_m, u_m, v_m;
-	GLfloat xtrans = -xpos;
-	GLfloat ztrans = -zpos;
-	GLfloat ytrans = -walkbias - 0.25f;
-	GLfloat sceneroty = 360.0f - yrot;
-	glRotatef(lookupdown, 1.0f, 0, 0);
-	glRotatef(sceneroty, 0, 1.0f, 0);
-
-	glTranslatef(xtrans, ytrans, ztrans);
-}
-
-
-void change_size(int w, int h)	{
-
-	// Prevent a divide by zero, when window is too short
-	// (you cant make a window of zero width).
-	if (h == 0)
-		h = 1;
-
-	ratio = 1.0f * w / h;
-
-	// Reset the coordinate system before modifying
-	glMatrixMode(GL_PROJECTION); // Load the matrix
-	glLoadIdentity();
-
-	// Set the viewport to be the entire window
-	glViewport(0, 0, w, h);
-
-	// Set the clipping volume
-	gluPerspective(45, ratio, 1, OUTSIDE_EDGE);
-	glTranslatef(0., 0., OUTSIDE_EDGE * 2);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	/*gluLookAt(x, y, z,
-	x + lx, y + ly, z + lz,
-	0.0f, 1.0f, 0.0f);*/
-}
-
-
-//--------------------------------Reshape & redisplay functions-------------------
-//void change_size(int w, int h)
-//{
-//	glViewport(0, 0, w, h);
-//	glMatrixMode(GL_PROJECTION);
-//	glLoadIdentity();
-//	if (w <= h)
-//		glOrtho(-30.0, 30.0, -30.0 * (GLfloat)h / (GLfloat)w,
-//		30.0 * (GLfloat)h / (GLfloat)w, -200, 200);
-//	else
-//		glOrtho(-30.0 * (GLfloat)w / (GLfloat)h,
-//		30.0 * (GLfloat)w / (GLfloat)h, -30.0, 30.0, -200, 200);
-//
-//	gluPerspective(1.0, (float)w / h, 2.0, 1.0);
-//	gluLookAt(translation[3].value, translation[4].value, eye[2],
-//		at[0], at[1], at[2], up[0], up[1], up[2]);
-//	glTranslatef(translation[0].value, translation[1].value,
-//		translation[2].value);
-//	glEnable(GL_DEPTH_TEST);
-//	glEnable(GL_LIGHTING);
-//	glEnable(GL_LIGHT0);
-//	glMatrixMode(GL_MODELVIEW);
-//	glLoadIdentity();
 //}

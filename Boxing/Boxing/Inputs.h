@@ -17,7 +17,6 @@ void mouse(int, int, int, int);
 void pressed_mouse(int, int);
 void keyboard(unsigned char, int, int);
 void special_key_input(int, int, int);
-void place_camera(void);
 void change_size(int, int);
 void redisplay_all(void);
 void my_idle(void);
