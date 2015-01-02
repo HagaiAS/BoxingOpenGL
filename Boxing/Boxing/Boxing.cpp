@@ -29,6 +29,18 @@ GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
 GLUquadric *quad;
 GLuint rockyHeadTextureId; // The id of the face texture
 GLuint rockyBodyTextureId; // The id of the body texture
+GLfloat CLAPPING_SPEED = 5.0;
+GLfloat crowdAnglesClapping[17] =
+{
+	0.0, 0.0, 0.0, // torso, neckX, neckY
+	10.0, -30.0, // left upper/lower armX
+	10.0, -30.0, // right upper/lower armX
+	90.0, 90.0, // left upper/lower legX
+	90.0, 90.0, // right upper/lower legX
+	-55.0, 55.0, // left upper / right upper armZ
+	0.0, 0.0, // left upper / right upper legZ
+	20.0, 20.0 // left / right footX
+};
 
 //--------------------------------Initialization function-------------------------
 void my_init(void)
@@ -93,7 +105,7 @@ void my_display(void)
 	draw_tribunes();
 	draw_arena();
 	draw_entrance();
-	crowd.draw_crowds();
+	crowd.draw_crowds(crowdAnglesClapping);
 	boxers.draw_boxer1(BOXER_RED_MOVING_X);
 	boxers.draw_boxer2(BOXER_BLUE_MOVING_X);
 
@@ -129,6 +141,13 @@ void my_idle(void)
 	boxers.animate_boxers_walk(boxers.BoxerAngles1);
 	boxers.animate_boxers_walk(boxers.BoxerAngles2);
 	//boxers.animate_boxers_fight();
+
+	if ((crowdAnglesClapping[4] < -40) || (crowdAnglesClapping[4] > 0)) {
+		CLAPPING_SPEED *= -1;
+	}
+
+	crowdAnglesClapping[4] += CLAPPING_SPEED;
+	crowdAnglesClapping[6] += CLAPPING_SPEED;
 
 	// Call redisplay again
 	glutPostRedisplay();

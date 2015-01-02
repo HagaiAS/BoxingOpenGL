@@ -2,9 +2,26 @@
 
 GLdouble CrowdDistance = 50.0;
 
-/*
-Boxer 1 angles body parts' angles
-*/
+//0 torso
+//1 neckX
+//2 neckY
+
+//3 left upper armX
+//4 left lower armX
+//5 right upper armX
+//6 right lower armX
+//7 left upper legX
+//8 left lower legX
+//9 right upper legX
+//10 right lower legX
+
+//11 left upper armZ
+//12 right upper armZ
+//13 left upper legZ
+//14 right upper legZ
+
+//15 left footX
+//16 right footX
 GLfloat crowdAngles[17] =
 {
 	0.0, 0.0, 0.0, -30.0,
@@ -27,7 +44,7 @@ Crowd::Crowd()
 	crowdColors = crowdRandomColors;
 }
 
-void Crowd::draw_crowds()
+void Crowd::draw_crowds(GLfloat* crowdAnglesMoving)
 {
 	//glNewList(CROWD_LIST, GL_COMPILE);
 	//	glPushMatrix();		
@@ -48,7 +65,7 @@ void Crowd::draw_crowds()
 	// Create new display list for crowd man
 	glNewList(CROWD_LIST, GL_COMPILE);
 		glPushMatrix();
-			draw_body(crowdAngles);
+			draw_body(crowdAnglesMoving);
 		glPopMatrix();
 	glEndList();
 

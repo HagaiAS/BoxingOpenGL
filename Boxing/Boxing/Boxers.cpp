@@ -13,6 +13,27 @@ bool flag5 = true;
 bool flag6 = false;
 bool hflag = true;
 
+//0 torso
+
+//1 neckX
+//2 neckY
+
+//3 left upper armX
+//4 left lower armX
+//5 right upper armX
+//6 right lower armX
+//7 left upper legX
+//8 left lower legX
+//9 right upper legX
+//10 right lower legX
+
+//11 left upper armZ
+//12 right upper armZ
+//13 left upper legZ
+//14 right upper legZ
+
+//15 left footX
+//16 right footX
 GLfloat BoxerAng1[17] =
 {
 	0.0, 0.0, 0.0, 30.0,
