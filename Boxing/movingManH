@@ -38,11 +38,11 @@ bool flag1=true, flag2=false,
 /*
 Initialization of body parts' angles
 */
-static GLfloat theta[17] = {0.0,   0.0,   0.0, 90.0,
-							-20.0, 90.0, -20.0, 180.0,
-							0.0, 180.0, 0.0, 0.0,
-						    0.0, 0.0,  0.0, 0.0, 
-							0.0
+static GLfloat theta[17] = {
+	0.0,   0.0,   0.0, 90.0,
+	-20.0, 90.0, -20.0, 180.0,
+	0.0, 180.0, 0.0, 0.0,
+	0.0, 0.0,  0.0, 0.0, 0.0
 							};
 static GLint choise = 2;
 static GLint m_choise = 0;

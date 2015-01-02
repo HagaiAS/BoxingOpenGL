@@ -1,17 +1,24 @@
 #include "Boxers.h"
 
 const GLdouble BoxersDistance = 80.0;
-
+const GLdouble BoxersMoveLegs = 12.0;
 /*
 Define of body properties
 */
-bool flag1 = true;
-bool flag2 = false;
-bool flag3 = true;
-bool flag4 = false;
-bool flag5 = true;
-bool flag6 = false;
-bool hflag = true;
+bool flag1 = false;
+bool flag2 = true;
+bool flag3 = false;
+bool flag4 = true;
+bool flag5 = false;
+bool flag6 = true;
+bool hflag = false;
+//bool flag1 = true;
+//bool flag2 = true;
+//bool flag3 = true;
+//bool flag4 = false;
+//bool flag5 = true;
+//bool flag6 = false;
+//bool hflag = true;
 
 //0 torso
 
@@ -36,6 +43,12 @@ bool hflag = true;
 //16 right footX
 GLfloat BoxerAng1[17] =
 {
+	//1, 2, 3, 90.0 - 60.0,
+	//-20.0 - 100.0, 90.0 - 50.0, -20.0 - 60.0, S,
+	//0.0 + 10.0, S, 0.0 + 40.0, 0.0 + 5.0,
+	//S, S, S, 0.0 + 20.0, S
+
+
 	0.0, 0.0, 0.0, 30.0,
 	-120.0, 40.0, -80.0, 180.0,
 	10.0, 180.0, 40.0, 5.0,
@@ -81,50 +94,58 @@ void Boxers::draw_boxer2(GLfloat movingX)
 //--------------------------------Animation functions-----------------------
 void Boxers::animate_boxers_walk(GLfloat* BoxerAngles)
 {
+	if (BoxerAngles[3] >= 160.0) flag1 = false;
+	if (BoxerAngles[3] <= 10.0)  flag1 = true;
+
 	if (flag1) {
-		BoxerAngles[3] += 5.0;
+		BoxerAngles[3] += BoxersMoveLegs;
 	}
 	else {
-		BoxerAngles[3] -= 5.0;
+		BoxerAngles[3] -= BoxersMoveLegs;
 	}
-	if (BoxerAngles[3] >= 110.0) flag1 = false;
-	if (BoxerAngles[3] <= 70.0)  flag1 = true;
+
+	if (BoxerAngles[5] >= 160.0) flag2 = false;
+	if (BoxerAngles[5] <= 10.0)  flag2 = true;
 
 	if (flag2) {
-		BoxerAngles[5] += 5.0;
+		BoxerAngles[5] += BoxersMoveLegs;
 	}
 	else {
-		BoxerAngles[5] -= 5.0;
+		BoxerAngles[5] -= BoxersMoveLegs;
 	}
-	if (BoxerAngles[5] >= 110.0) flag2 = false;
-	if (BoxerAngles[5] <= 70.0)  flag2 = true;
 
-	if (flag3) {
-		BoxerAngles[9] += 5.0;
-	}
-	else {
-		BoxerAngles[9] -= 5.0;
-	}
-	if (BoxerAngles[9] >= 200.0) flag3 = false;
-	if (BoxerAngles[9] <= 160.0)  flag3 = true;
+	if (BoxerAngles[7] >= 200.0) flag4 = false;
+	if (BoxerAngles[7] <= 110.0)  flag4 = true;
 
 	if (flag4) {
-		BoxerAngles[7] += 5.0;
+		BoxerAngles[7] += BoxersMoveLegs;
 	}
 	else {
-		BoxerAngles[7] -= 5.0;
+		BoxerAngles[7] -= BoxersMoveLegs;
 	}
-	if (BoxerAngles[7] >= 200.0) flag4 = false;
-	if (BoxerAngles[7] <= 160.0)  flag4 = true;
 
-	if (hflag) {
-		BoxerAngles[2] += 5.0;
+
+	if (BoxerAngles[9] >= 200.0) flag3 = false;
+	if (BoxerAngles[9] <= 110.0)  flag3 = true;
+
+	if (flag3) {
+		BoxerAngles[9] += BoxersMoveLegs;
 	}
 	else {
-		BoxerAngles[2] -= 5.0;
+		BoxerAngles[9] -= BoxersMoveLegs;
 	}
+
+
 	if (BoxerAngles[2] >= 30.0) hflag = false;
 	if (BoxerAngles[2] <= -30.0) hflag = true;
+
+	if (hflag) {
+		BoxerAngles[2] += BoxersMoveLegs;
+	}
+	else {
+		BoxerAngles[2] -= BoxersMoveLegs;
+	}
+
 
 	glutPostRedisplay();
 }

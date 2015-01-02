@@ -12,6 +12,7 @@
 
 void my_init(void);
 void my_display(void);
+void make_delay(int);
 void my_idle(void);
 void printInstructions(void);
 GLuint LoadTexture(const char*);
@@ -29,7 +30,7 @@ GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
 GLUquadric *quad;
 GLuint rockyHeadTextureId; // The id of the face texture
 GLuint rockyBodyTextureId; // The id of the body texture
-GLfloat CLAPPING_SPEED = 5.0;
+GLfloat CLAPPING_SPEED = 7.0;
 GLfloat crowdAnglesClapping[17] =
 {
 	0.0, 0.0, 0.0, // torso, neckX, neckY
@@ -78,6 +79,9 @@ void my_init(void)
 	glEnable(GL_DEPTH_TEST);  //for 3D work
 }
 
+//------------------------------------------------
+//                DRAWING FUNCTIONS
+//------------------------------------------------
 // This method display rotating man
 void my_display(void)
 {
@@ -99,7 +103,6 @@ void my_display(void)
 	//glBindTexture(GL_TEXTURE_2D, texture);
 
 	draw_axes();
-
 	draw_world();
 	draw_lamp();
 	draw_tribunes();
@@ -111,6 +114,13 @@ void my_display(void)
 
 	glutSwapBuffers(); // for animation
 }
+
+void make_delay(int)
+{
+	my_idle();
+	glutTimerFunc(TIMERMSECS, make_delay, 1);
+}
+
 
 // This method change the angles for each draw
 void my_idle(void)
@@ -140,7 +150,8 @@ void my_idle(void)
 	// Move the boxer legs infinity
 	boxers.animate_boxers_walk(boxers.BoxerAngles1);
 	boxers.animate_boxers_walk(boxers.BoxerAngles2);
-	//boxers.animate_boxers_fight();
+	//boxers.animate_boxers_fight(boxers.BoxerAngles1);
+	//boxers.animate_boxers_fight(boxers.BoxerAngles2);
 
 	if ((crowdAnglesClapping[4] < -40) || (crowdAnglesClapping[4] > 0)) {
 		CLAPPING_SPEED *= -1;
@@ -150,7 +161,7 @@ void my_idle(void)
 	crowdAnglesClapping[6] += CLAPPING_SPEED;
 
 	// Call redisplay again
-	glutPostRedisplay();
+	//glutPostRedisplay();
 }
 
 // This method output the instructions to the C++ window
@@ -204,11 +215,12 @@ void main(int argc, char **argv)
 
 	// Set display function and idle function (the changes every loop)
 	glutDisplayFunc(my_display);
-	glutIdleFunc(my_idle);
+	//glutIdleFunc(my_idle);
+	glutTimerFunc(TIMERMSECS, make_delay, 1);
 
-	// Define mouse input
-	glutMotionFunc(pressed_mouse);
-	glutMouseFunc(mouse);
+	//// Define mouse input
+	//glutMotionFunc(pressed_mouse);
+	//glutMouseFunc(mouse);
 
 	// Define keyboard input
 	glutKeyboardFunc(keyboard);
@@ -219,20 +231,4 @@ void main(int argc, char **argv)
 	glutMainLoop();
 }
 
-//------------------------------------------------
-//------------------------------------------------
-//------------------------------------------------
-//                DRAWING FUNCTIONS
-//------------------------------------------------
-//------------------------------------------------
-//------------------------------------------------
 
-//void fillRandomColor() {
-//
-//	// Define random color
-//	srand(time(NULL));
-//	red = (double)(rand() % 1000) / 1000;
-//	green = (double)(rand() % 1000) / 1000;
-//	blue = (double)(rand() % 1000) / 1000;
-//	glColor3f(red, green, blue);
-//}

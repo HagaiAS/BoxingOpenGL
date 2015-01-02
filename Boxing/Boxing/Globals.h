@@ -9,19 +9,20 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-#define WINDOW_HEIGHT 768
-#define WINDOW_WIDTH 1280
-#define WINDOW_POS_X 10
-#define WINDOW_POS_Y 10
-#define Pi 3.14159
-#define START_ANGLE 0.0
+#define WINDOW_HEIGHT	768
+#define WINDOW_WIDTH	1280
+#define WINDOW_POS_X	10
+#define WINDOW_POS_Y	10
+#define Pi				3.14159
+#define START_ANGLE		0.0
+#define TIMERMSECS		40 
 
 // Display lists
-#define TRIBUNE_LIST 1 
-#define ROPES_LIST 2 
-#define ENTRANCE_LIST 3
-#define CROWD_LIST 4
-#define CROWD_ROW_LIST 5
+#define TRIBUNE_LIST	1 
+#define ROPES_LIST		2 
+#define ENTRANCE_LIST	3
+#define CROWD_LIST		4
+#define CROWD_ROW_LIST	5
 
 // World
 const GLdouble WORLD_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 10);

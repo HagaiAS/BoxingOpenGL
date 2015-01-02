@@ -125,14 +125,3 @@ void Crowd::draw_crowds(GLfloat* crowdAnglesMoving)
 		glCallList(CROWD_ROW_LIST);
 	glPopMatrix();
 }
-
-// This function flickering the color because of the display infinity calls
-void Crowd::fillRandomColor() {
-
-	// Define random color
-	//srand(time(NULL));
-	//red = (double)(rand() % 1000) / 1000;
-	//green = (double)(rand() % 1000) / 1000;
-	//blue = (double)(rand() % 1000) / 1000;
-	//glColor3f(red, green, blue);
-}

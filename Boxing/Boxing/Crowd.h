@@ -7,5 +7,4 @@ class Crowd : public Body
 		Crowd();
 		~Crowd(){};
 		void draw_crowds(GLfloat*);
-		void fillRandomColor();
 };

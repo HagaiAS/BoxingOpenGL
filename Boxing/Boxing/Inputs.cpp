@@ -3,13 +3,13 @@
 #include "Camera.h"
 #include "Body.h"
 
-Area translation[5] = {
-	{ 0, 120, 40, -30.0, 30.0, 0.0, 0.05 },
-	{ 1, 180, 40, -30.0, 30.0, 0.0, 0.05 },
-	{ 2, 180, 40, -200.0, 200.0, 0.0, 0.1 },
-	{ 3, 180, 120, -100, 100, 0.0, 0.5 },
-	{ 4, 240, 120, -100, 100, 0.0, 0.5 }
-};
+//Area translation[5] = {
+//	{ 0, 120, 40, -30.0, 30.0, 0.0, 0.05 },
+//	{ 1, 180, 40, -30.0, 30.0, 0.0, 0.05 },
+//	{ 2, 180, 40, -200.0, 200.0, 0.0, 0.1 },
+//	{ 3, 180, 120, -100, 100, 0.0, 0.5 },
+//	{ 4, 240, 120, -100, 100, 0.0, 0.5 }
+//};
 
 /*
 gluLookAt initial values, view point rotation
@@ -43,63 +43,63 @@ Camera		camera;
 int isTopViewActive = 0;
 
 //--------------------------------Display area for mouse conrol-------------------
-void area_update(Area* area, int update)
-{
-	if (selection != area->id)
-		return;
+//void area_update(Area* area, int update)
+//{
+//	if (selection != area->id)
+//		return;
+//
+//	area->value += update * area->step;
+//
+//	if (area->value < area->min)
+//		area->value = area->min;
+//	else if (area->value > area->max)
+//		area->value = area->max;
+//
+//}
 
-	area->value += update * area->step;
-
-	if (area->value < area->min)
-		area->value = area->min;
-	else if (area->value > area->max)
-		area->value = area->max;
-
-}
-
-int area_hit(Area* area, int x, int y)
-{
-	if ((x > 0 && x < WINDOW_WIDTH) &&
-		(y > 0 && y < WINDOW_HEIGHT))
-		return area->id;
-	return 0;
-}
-
-int old_y, old_x;
-
-void mouse(int button, int state, int x, int y)
-{
-	selection = 0;
-	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN
-		&& (m_choise == 0 || m_choise == 2)) {
-		selection += area_hit(&translation[0], x, y);
-		if (m_choise == 0) selection += area_hit(&translation[0], x, y);
-		if (m_choise == 2) selection += area_hit(&translation[3], x, y);
-		old_x = x;
-		my_idle();
-	}
-	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN
-		&& ((m_choise == 0 || m_choise == 1) || m_choise == 2)) {
-		if (m_choise == 0) selection += area_hit(&translation[1], x, y);
-		if (m_choise == 1) selection += area_hit(&translation[2], x, y);
-		if (m_choise == 2) selection += area_hit(&translation[4], x, y);
-		old_y = y;
-		my_idle();
-	}
-}
-
-void pressed_mouse(int x, int y)
-{
-	area_update(&translation[0], x - old_x);
-	area_update(&translation[1], old_y - y);
-	area_update(&translation[2], old_y - y);
-	area_update(&translation[3], x - old_x);
-	area_update(&translation[4], old_y - y);
-	old_y = y;
-	old_x = x;
-
-	my_idle();
-}
+//int area_hit(Area* area, int x, int y)
+//{
+//	if ((x > 0 && x < WINDOW_WIDTH) &&
+//		(y > 0 && y < WINDOW_HEIGHT))
+//		return area->id;
+//	return 0;
+//}
+//
+//int old_y, old_x;
+//
+//void mouse(int button, int state, int x, int y)
+//{
+//	selection = 0;
+//	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN
+//		&& (m_choise == 0 || m_choise == 2)) {
+//		selection += area_hit(&translation[0], x, y);
+//		if (m_choise == 0) selection += area_hit(&translation[0], x, y);
+//		if (m_choise == 2) selection += area_hit(&translation[3], x, y);
+//		old_x = x;
+//		my_idle();
+//	}
+//	if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN
+//		&& ((m_choise == 0 || m_choise == 1) || m_choise == 2)) {
+//		if (m_choise == 0) selection += area_hit(&translation[1], x, y);
+//		if (m_choise == 1) selection += area_hit(&translation[2], x, y);
+//		if (m_choise == 2) selection += area_hit(&translation[4], x, y);
+//		old_y = y;
+//		my_idle();
+//	}
+//}
+//
+//void pressed_mouse(int x, int y)
+//{
+//	area_update(&translation[0], x - old_x);
+//	area_update(&translation[1], old_y - y);
+//	area_update(&translation[2], old_y - y);
+//	area_update(&translation[3], x - old_x);
+//	area_update(&translation[4], old_y - y);
+//	old_y = y;
+//	old_x = x;
+//
+//	my_idle();
+//}
 
 //--------------------------------Keyboard control function-----------------------
 
