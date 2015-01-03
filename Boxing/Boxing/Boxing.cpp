@@ -15,6 +15,8 @@ void my_display(void);
 void make_delay(int);
 void my_idle(void);
 void printInstructions(void);
+void clapHands();
+void moveHandsUp();
 GLuint LoadTexture(const char*);
 GLuint loadTexture(Image*);
 
@@ -30,7 +32,10 @@ GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
 GLUquadric *quad;
 GLuint rockyHeadTextureId; // The id of the face texture
 GLuint rockyBodyTextureId; // The id of the body texture
-GLfloat CLAPPING_SPEED = 7.0;
+GLuint rockyShortsTextureId; // The id of the shorts texture
+GLuint undefinedTextureId = -1; // The id of undefined texture
+GLfloat CLAPPING_SPEED = 10.0;
+GLfloat HANDS_UP_SPEED = 5.0;
 GLfloat crowdAnglesClapping[17] =
 {
 	0.0, 0.0, 0.0, // torso, neckX, neckY
@@ -39,6 +44,18 @@ GLfloat crowdAnglesClapping[17] =
 	90.0, 90.0, // left upper/lower legX
 	90.0, 90.0, // right upper/lower legX
 	-55.0, 55.0, // left upper / right upper armZ
+	0.0, 0.0, // left upper / right upper legZ
+	20.0, 20.0 // left / right footX
+};
+
+GLfloat crowdAnglesUpArms[17] =
+{
+	0.0, 0.0, 0.0, // torso, neckX, neckY
+	40.0, 0.0, // left upper/lower armX
+	40.0, 0.0, // right upper/lower armX
+	90.0, 90.0, // left upper/lower legX
+	90.0, 90.0, // right upper/lower legX
+	0.0, 0.0, // left upper / right upper armZ
 	0.0, 0.0, // left upper / right upper legZ
 	20.0, 20.0 // left / right footX
 };
@@ -57,19 +74,24 @@ void my_init(void)
 	// Turn on the lights
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0); 
-	
 	boxers.init_body();
 	crowd.init_body();
-
 	// TODO: check the textures
 	//GLuint texture = LoadTexture("bricks.bmp");
 	Image* headImage = loadBMP("rockyHead.bmp");
 	Image* bodyImage = loadBMP("gloves.bmp");
+	Image* shortsImage = loadBMP("rockyShorts.bmp");
+	
 	rockyHeadTextureId = loadTexture(headImage);
 	rockyBodyTextureId = loadTexture(bodyImage);
+	rockyShortsTextureId = loadTexture(shortsImage);
+
+	
+
+	
 	delete headImage;
 	delete bodyImage;
-
+	delete shortsImage;
 	// Set the materials to be tracked by the color
 	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 	glEnable(GL_COLOR_MATERIAL);
@@ -108,7 +130,7 @@ void my_display(void)
 	draw_tribunes();
 	draw_arena();
 	draw_entrance();
-	crowd.draw_crowds(crowdAnglesClapping);
+	crowd.draw_crowds(crowdAnglesClapping, crowdAnglesUpArms);
 	boxers.draw_boxer1(BOXER_RED_MOVING_X);
 	boxers.draw_boxer2(BOXER_BLUE_MOVING_X);
 
@@ -153,15 +175,36 @@ void my_idle(void)
 	//boxers.animate_boxers_fight(boxers.BoxerAngles1);
 	//boxers.animate_boxers_fight(boxers.BoxerAngles2);
 
-	if ((crowdAnglesClapping[4] < -40) || (crowdAnglesClapping[4] > 0)) {
+	// Move clapping hands
+	clapHands();
+
+	// Move hands up and down
+	moveHandsUp();
+
+	// Call redisplay again
+	glutPostRedisplay();
+}
+
+void clapHands()
+{
+	// Move clapping hands
+	if ((crowdAnglesClapping[4] < -30) || (crowdAnglesClapping[4] > 0)) {
 		CLAPPING_SPEED *= -1;
 	}
 
 	crowdAnglesClapping[4] += CLAPPING_SPEED;
-	crowdAnglesClapping[6] += CLAPPING_SPEED;
+	crowdAnglesClapping[6] += CLAPPING_SPEED; 
+}
 
-	// Call redisplay again
-	//glutPostRedisplay();
+void moveHandsUp()
+{
+	// Move clapping hands
+	if ((crowdAnglesUpArms[3] > 40) || (crowdAnglesUpArms[3] < -100)) {
+		HANDS_UP_SPEED *= -1;
+	}
+
+	crowdAnglesUpArms[3] += HANDS_UP_SPEED;
+	crowdAnglesUpArms[5] += HANDS_UP_SPEED;
 }
 
 // This method output the instructions to the C++ window

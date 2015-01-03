@@ -18,11 +18,12 @@
 #define TIMERMSECS		40 
 
 // Display lists
-#define TRIBUNE_LIST	1 
-#define ROPES_LIST		2 
-#define ENTRANCE_LIST	3
-#define CROWD_LIST		4
-#define CROWD_ROW_LIST	5
+#define TRIBUNE_LIST			1 
+#define ROPES_LIST				2 
+#define ENTRANCE_LIST			3
+#define CROWD_ROW_LIST			4
+#define CROWD_CLAPPING_LIST		5
+#define CROWD_HANDS_UP_LIST		6
 
 // World
 const GLdouble WORLD_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 10);
