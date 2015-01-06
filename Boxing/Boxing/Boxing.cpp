@@ -9,6 +9,7 @@
 #include "Boxers.h"
 #include "Crowd.h"
 #include "ImageLoader.h"
+#include "RgbImage.h"
 
 void my_init(void);
 void my_display(void);
@@ -17,25 +18,47 @@ void my_idle(void);
 void printInstructions(void);
 void clapHands();
 void moveHandsUp();
-GLuint LoadTexture(const char*);
-GLuint loadTexture(Image*);
+void loadTextureFromFile(char*, GLuint*, GLuint);
+void readTextures(char**, GLuint*);
 
 using std::cout;
 using std::endl;
 
-Boxers boxers;
+Boxers boxer1(BoxerAng1);
+Boxers boxer2(BoxerAng2);
 Crowd crowd;
+
+// Animation variables
 GLfloat BOXER_RED_MOVING_X = 0.;
 GLfloat BOXER_RED_MOVING_SPEED = 4.0;
 GLfloat BOXER_BLUE_MOVING_X = 0.;
 GLfloat BOXER_BLUE_MOVING_SPEED = 5.0;
-GLUquadric *quad;
-GLuint rockyHeadTextureId; // The id of the face texture
-GLuint rockyBodyTextureId; // The id of the body texture
-GLuint rockyShortsTextureId; // The id of the shorts texture
-GLuint undefinedTextureId = -1; // The id of undefined texture
 GLfloat CLAPPING_SPEED = 10.0;
 GLfloat HANDS_UP_SPEED = 5.0;
+
+// The textures id and files
+GLuint boxer1Textures[NUM_OF_TEXTURES];
+GLuint boxer2Textures[NUM_OF_TEXTURES];
+GLuint crowdTextures[NUM_OF_TEXTURES];
+char* rockyTextureFiles[NUM_OF_TEXTURES] = {	"./rockyHead.bmp",
+												"./body.bmp",
+												"./rockyHand.bmp",
+												"./gloves.bmp",
+												"./legs.bmp",
+												"./rockyShorts.bmp" };
+char* apolloTextureFiles[NUM_OF_TEXTURES] = {	"./rockyHead.bmp",
+												"./body.bmp", 
+												"./rockyHand.bmp",
+												"./gloves.bmp",
+												"./legs.bmp",
+												"./rockyShorts.bmp" };
+char* crowdTextureFiles[NUM_OF_TEXTURES] = {	"./-.bmp",
+												"./-.bmp",
+												"./-.bmp",
+												"./-.bmp",
+												"./-.bmp",
+												"./-.bmp" };
+
 GLfloat crowdAnglesClapping[17] =
 {
 	0.0, 0.0, 0.0, // torso, neckX, neckY
@@ -74,27 +97,23 @@ void my_init(void)
 	// Turn on the lights
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0); 
-	boxers.init_body();
-	crowd.init_body();
-	// TODO: check the textures
-	//GLuint texture = LoadTexture("bricks.bmp");
-	Image* headImage = loadBMP("rockyHead.bmp");
-	Image* bodyImage = loadBMP("gloves.bmp");
-	Image* shortsImage = loadBMP("rockyShorts.bmp");
-	
-	rockyHeadTextureId = loadTexture(headImage);
-	rockyBodyTextureId = loadTexture(bodyImage);
-	rockyShortsTextureId = loadTexture(shortsImage);
 
-	
+	// Read all texture files
+	readTextures(rockyTextureFiles, boxer1Textures);
+	readTextures(apolloTextureFiles, boxer2Textures);
+	readTextures(crowdTextureFiles, crowdTextures);
 
-	
-	delete headImage;
-	delete bodyImage;
-	delete shortsImage;
+	// Initialize the bodies
+	boxer1.init_body(boxer1Textures, true, 0.7, 0., 0.);
+	boxer2.init_body(boxer2Textures, false, 0., 0., 0.8);
+	crowd.init_body(crowdTextures, false);
+
 	// Set the materials to be tracked by the color
 	glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 	glEnable(GL_COLOR_MATERIAL);
+
+	// Define the textures to replace the color of the objects
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 	// Define the matrix and 3D mode
 	glOrtho(LEFT_EDGE, RIGHT_EDGE, BOTTOM_EDGE, TOP_EDGE, OUTSIDE_EDGE, INSIDE_EDGE); // 3D axes definition
@@ -109,21 +128,26 @@ void my_display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //DEPTH_BUFFER
 
-	// TODO: check the textures
-	glEnable(GL_TEXTURE_2D);
+	//glPushMatrix();
+	//	glEnable(GL_TEXTURE_2D);
+	//		glBindTexture(GL_TEXTURE_2D, textures[0]);
+	//	
+	//		glBegin(GL_QUADS);
+	//			// Front Face
+	//			glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	//			glTexCoord2f(2.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+	//			glTexCoord2f(2.0f, 2.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+	//			glTexCoord2f(0.0f, 2.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	//			// Back Face
+	//			glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+	//			glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+	//			glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+	//			glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+	//		glEnd();
+	//	glDisable(GL_TEXTURE_2D);
+	//glPopMatrix();
 
-	//Bottom
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	//gluQuadricTexture(quad, 0);
-	//gluSphere(quad, 200, 20, 20);
-	//glBindTexture(GL_TEXTURE_2D, texture);
-
+	// Draw all objects
 	draw_axes();
 	draw_world();
 	draw_lamp();
@@ -131,18 +155,27 @@ void my_display(void)
 	draw_arena();
 	draw_entrance();
 	crowd.draw_crowds(crowdAnglesClapping, crowdAnglesUpArms);
-	boxers.draw_boxer1(BOXER_RED_MOVING_X);
-	boxers.draw_boxer2(BOXER_BLUE_MOVING_X);
+	boxer1.draw_boxer(BOXER_RED_MOVING_X);
+	boxer2.draw_boxer(BOXER_BLUE_MOVING_X);
 
 	glutSwapBuffers(); // for animation
 }
 
+// This method load the textures from all files and updates the id of each texture
+void readTextures(char** fileNames, GLuint* textures)
+{
+	for (int currTexture = 0; currTexture < NUM_OF_TEXTURES; currTexture++)
+	{
+		loadTextureFromFile(fileNames[currTexture], textures, currTexture);
+	}
+}
+
+// This method handles the animations of the objects and the delay of movement
 void make_delay(int)
 {
 	my_idle();
 	glutTimerFunc(TIMERMSECS, make_delay, 1);
 }
-
 
 // This method change the angles for each draw
 void my_idle(void)
@@ -170,10 +203,10 @@ void my_idle(void)
 	}
 
 	// Move the boxer legs infinity
-	boxers.animate_boxers_walk(boxers.BoxerAngles1);
-	boxers.animate_boxers_walk(boxers.BoxerAngles2);
-	//boxers.animate_boxers_fight(boxers.BoxerAngles1);
-	//boxers.animate_boxers_fight(boxers.BoxerAngles2);
+	boxer1.animate_boxer_walk();
+	boxer2.animate_boxer_walk();
+	//boxer1.animate_boxer_fight();
+	//boxer2.animate_boxer_fight();
 
 	// Move clapping hands
 	clapHands();
@@ -221,24 +254,36 @@ void printInstructions()
 		 << "Press the up/down arrow keys to speed up/slow down animation." << endl;
 }
 
-// Makes the image into a texture, and returns the id of the texture
-GLuint loadTexture(Image* image) {
+// This method read a texture map from a BMP bitmap file and insert the id into the textures list
+void loadTextureFromFile(char *filename, GLuint* textures, GLuint index)
+{
+	RgbImage theTexMap(filename);
 
-	GLuint textureId;
-	glGenTextures(1, &textureId); //Make room for our texture
-	//glBindTexture(GL_TEXTURE_2D, textureId); //Tell OpenGL which texture to edit
+	// Pixel alignment: each row is word aligned (aligned to a 4 byte boundary)
+	// Therefore, no need to call glPixelStore( GL_UNPACK_ALIGNMENT, ... )
+	
+	// Create The Texture
+	glGenTextures(1, &textures[index]);					
+	glBindTexture(GL_TEXTURE_2D, textures[index]);
 
-	// Map the image to the texture according to size
-	glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
-				0,                            //0 for now
-				GL_RGB,                       //Format OpenGL uses for image
-				image->width, image->height,  //Width and height
-				0,                            //The border of the image
-				GL_RGB, //GL_RGB, because pixels are stored in RGB format
-				GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored as unsigned numbers
-				image->pixels);               //The actual pixel data
+	// Set textures parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	return textureId; //Returns the id of the texture
+	// Typical Texture Generation Using Data From The Bitmap
+	glTexImage2D(GL_TEXTURE_2D, 
+				 0, 
+				 GL_RGB,
+				 theTexMap.GetNumCols(), 
+				 theTexMap.GetNumRows(), 
+				 0, 
+				 GL_RGB, 
+				 GL_UNSIGNED_BYTE, 
+				 theTexMap.ImageData());
 }
 
 void main(int argc, char **argv)
@@ -256,9 +301,8 @@ void main(int argc, char **argv)
 	// Initialize everything
 	my_init();
 
-	// Set display function and idle function (the changes every loop)
+	// Set display function and timer function (the changes every loop)
 	glutDisplayFunc(my_display);
-	//glutIdleFunc(my_idle);
 	glutTimerFunc(TIMERMSECS, make_delay, 1);
 
 	//// Define mouse input
@@ -273,5 +317,3 @@ void main(int argc, char **argv)
 	// Infinite loop
 	glutMainLoop();
 }
-
-

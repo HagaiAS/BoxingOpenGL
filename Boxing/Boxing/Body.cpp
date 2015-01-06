@@ -1,34 +1,29 @@
 #include "Body.h"
 
-/*
-Initialization of body parts' angles
-*/
+// Initialization of body parts' angles
 GLfloat *theta;
 
-/*
-Body parts
-*/
+// Body parts
 GLUquadricObj	*torsoObj, *headObj, *n, *lh,
 				*rh, *lf, *rf, *jp,
 				*lhnd, *lft, *lua, *lla,
 				*rua, *rla, *lll, *rll,
 				*rul, *lul, *rhnd, *rft;
 
-/*
-Animation variables and angles
-*/
-GLuint texture1 = 0;
-GLuint texture2 = 0;
-GLuint texture3 = 0;
-GLuint texture4 = 0;
-
 //--------------------------------draw body functions-------------------------------
 
 void Body::torso()
 {
 	glPushMatrix();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	gluCylinder(torsoObj, TORSO_RADIUS, TORSO_RADIUS, TORSO_HEIGHT, 10, 10);
+		glRotatef(-90.0, 1.0, 0.0, 0.0);
+		glScalef(1., TORSO_TOP_RADIUS_SCALE, 1.);
+
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[BODY_TEXTURE_ID]);
+			gluQuadricTexture(torsoObj, 1);
+			gluCylinder(torsoObj, TORSO_RADIUS, torsoTopRadius, TORSO_HEIGHT, 20, 20);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -40,11 +35,12 @@ void Body::head()
 		glRotatef(15.0, 0.0, 0.0, 1.0);
 		glScalef(HEAD_HEIGHT, HEAD_HEIGHT, HEAD_RADIUS);
 
-		// TODO: check the textures
-		glBindTexture(GL_TEXTURE_2D, 2);
-		gluQuadricTexture(headObj, 1);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[HEAD_TEXTURE_ID]);
+			gluQuadricTexture(headObj, 1);
+			gluSphere(headObj, 1.0, 10, 10);
 
-		gluSphere(headObj, 1.0, 10, 10);
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -75,7 +71,13 @@ void Body::left_lower_arm()
 {
 	glPushMatrix();
 		glRotatef(0.0, 1.0, 0.0, 0.0);
-		gluCylinder(lla,LOWER_ARM_RADIUS, LOWER_ARM_RADIUS, LOWER_ARM_HEIGHT,10,10);
+		
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, textures[HAND_TEXTURE_ID]);
+			gluQuadricTexture(lla, 1);
+			gluCylinder(lla, LOWER_ARM_RADIUS, LOWER_ARM_RADIUS, LOWER_ARM_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -84,7 +86,13 @@ void Body::left_hand()
 	glPushMatrix();
 		glRotatef(90.0, 1.0, 0.0, 0.0);
 		glScalef(HAND_RADIUS, HAND_HEIGHT, HAND_RADIUS);
-		gluSphere(lhnd,1.0,10,10);
+		
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[GLOVE_TEXTURE_ID]);
+			gluQuadricTexture(lhnd, 1);
+			gluSphere(lhnd, 1.0, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -98,7 +106,12 @@ void Body::right_upper_arm()
 void Body::right_lower_arm()
 {
 	glPushMatrix();
-		gluCylinder(rla,LOWER_ARM_RADIUS, LOWER_ARM_RADIUS, LOWER_ARM_HEIGHT,10,10);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[HAND_TEXTURE_ID]);
+			gluQuadricTexture(rla, 1);
+			gluCylinder(rla, LOWER_ARM_RADIUS, LOWER_ARM_RADIUS, LOWER_ARM_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -107,7 +120,13 @@ void Body::right_hand()
 	glPushMatrix();
 		glRotatef(90.0, 1.0, 0.0, 0.0);
 		glScalef(HAND_RADIUS, HAND_HEIGHT, HAND_RADIUS);
-		gluSphere(rhnd,1.0,10,10);
+
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[GLOVE_TEXTURE_ID]);
+			gluQuadricTexture(rhnd, 1);
+			gluSphere(rhnd, 1.0, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -115,12 +134,13 @@ void Body::left_upper_leg()
 {
 	glPushMatrix();
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
-		
-		// TODO: check the textures
-		glBindTexture(GL_TEXTURE_2D, 1);
-		gluQuadricTexture(lul, 1);
 
-		gluCylinder(lul,UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT,10,10);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[SHORTS_TEXTURE_ID]);
+			gluQuadricTexture(lul, 1);
+			gluCylinder(lul, UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -128,7 +148,13 @@ void Body::left_lower_leg()
 {
 	glPushMatrix();
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
-		gluCylinder(lll,LOWER_LEG_RADIUS, LOWER_LEG_RADIUS, LOWER_LEG_HEIGHT,10,10);
+
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[LEG_TEXTURE_ID]);
+			gluQuadricTexture(lll, 1);
+			gluCylinder(lll, LOWER_LEG_RADIUS, LOWER_LEG_RADIUS, LOWER_LEG_HEIGHT, 10, 10);
+		
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -145,7 +171,13 @@ void Body::right_upper_leg()
 {
 	glPushMatrix();
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
-		gluCylinder(rul,UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT,10,10);
+
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[SHORTS_TEXTURE_ID]);
+			gluQuadricTexture(rul, 1);
+			gluCylinder(rul, UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -153,7 +185,13 @@ void Body::right_lower_leg()
 {
 	glPushMatrix();
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
-		gluCylinder(rll,LOWER_LEG_RADIUS, LOWER_LEG_RADIUS, LOWER_LEG_HEIGHT,10,10);
+
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[LEG_TEXTURE_ID]);
+			gluQuadricTexture(rll, 1);
+			gluCylinder(rll, LOWER_LEG_RADIUS, LOWER_LEG_RADIUS, LOWER_LEG_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -202,7 +240,7 @@ void Body::draw_body(GLfloat *init_theta)
 	glPopMatrix();//add JOINT_POINT_
 
 	glPushMatrix();//add JOINT_POINT_
-		glTranslatef(-0.85*(TORSO_RADIUS+JOINT_POINT_RADIUS), 0.9*TORSO_HEIGHT, 0.0);
+		glTranslatef(-0.85*(torsoTopRadius + JOINT_POINT_RADIUS), 0.9*TORSO_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0.0, 0.0, 0.0);
 		glRotatef(theta[3], 1.0, 0.0, 0.0);
@@ -218,7 +256,7 @@ void Body::draw_body(GLfloat *init_theta)
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(0.85*(TORSO_RADIUS+JOINT_POINT_RADIUS), 0.9*TORSO_HEIGHT, 0.0);
+		glTranslatef(0.85*(torsoTopRadius + JOINT_POINT_RADIUS), 0.9*TORSO_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0.0, 0.0, 0.0);
 		glRotatef(theta[5], 1.0, 0.0, 0.0);
@@ -226,10 +264,6 @@ void Body::draw_body(GLfloat *init_theta)
 		right_upper_arm();
 		glTranslatef(0.0, 0.0, UPPER_ARM_HEIGHT);
 		joint_point();
-
-		// TODO: check the textures
-		glBindTexture(GL_TEXTURE_2D, texture4);
-
 		glTranslatef(0.0, 0.1*JOINT_POINT_HEIGHT, 0.0);
 		glRotatef(theta[6], 1.0, 0.0, 0.0);
 		right_lower_arm();
@@ -274,7 +308,7 @@ void Body::draw_body(GLfloat *init_theta)
 }
 
 //--------------------------------Initialization function-------------------------
-void Body::init_body()
+void Body::init_body(GLuint* bodyTextures, bool isBoxer)
 {	
 	//GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 	//GLfloat mat_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
@@ -299,9 +333,16 @@ void Body::init_body()
 	//glEnable(GL_LIGHTING);
 	//glEnable(GL_LIGHT0);
 	//glDepthFunc(GL_LEQUAL);
-
 	/* allocate quadrics with filled drawing style */
 
+	// Define this body textures
+	textures = bodyTextures;
+
+	// If it is a boxer body - increase the torso top radius
+	if (isBoxer)
+	{
+		torsoTopRadius = TORSO_TOP_RADIUS;
+	}
 
 	n = gluNewQuadric();
 	gluQuadricDrawStyle(n, GLU_FILL);

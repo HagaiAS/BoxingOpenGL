@@ -4,13 +4,17 @@
 class Boxers : public Body
 {
 	public:
-		GLfloat *BoxerAngles1;
-		GLfloat *BoxerAngles2;
+		GLfloat red, green, blue = 0;
+		GLfloat *BoxerAngles;
+		GLdouble BoxersDistance = 80.0;
+		GLdouble BoxersMoveLegs = 12.0;
+		bool isOpponent;
 
-		Boxers();
+		Boxers(){};
+		Boxers(GLfloat*);
 		~Boxers(){};
-		void draw_boxer1(GLfloat);
-		void draw_boxer2(GLfloat);
-		void animate_boxers_walk(GLfloat*);
-		void animate_boxers_fight(GLfloat*);
+		void init_body(GLuint*, bool, GLfloat, GLfloat, GLfloat);
+		void draw_boxer(GLfloat);
+		void animate_boxer_walk();
+		void animate_boxer_fight();
 };

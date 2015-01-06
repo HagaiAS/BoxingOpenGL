@@ -4,6 +4,8 @@
 const GLfloat BODY_SCALE = 8;
 const GLfloat TORSO_HEIGHT = 5.0 * BODY_SCALE;
 const GLfloat TORSO_RADIUS = 1.3 * BODY_SCALE;
+const GLfloat TORSO_TOP_RADIUS = TORSO_RADIUS * 1.5;
+const GLfloat TORSO_TOP_RADIUS_SCALE = 0.5;
 const GLfloat UPPER_ARM_HEIGHT = 2.5 * BODY_SCALE;
 const GLfloat LOWER_ARM_HEIGHT = 2.3 * BODY_SCALE;
 const GLfloat UPPER_ARM_RADIUS = 0.5 * BODY_SCALE;
@@ -33,10 +35,15 @@ const GLdouble FLOOR_Y_B = (-WORLD_HEIGHT_B / 2) + ARENA_FLOOR_Y + LOWER_LEG_HEI
 class Body
 {
 	public:
+		
+		// Textures
+		GLuint* textures;
+		GLfloat torsoTopRadius = TORSO_RADIUS;
+
 		Body(){};
 		~Body(){};
 		void draw_body(GLfloat*);
-		void init_body();
+		void init_body(GLuint*, bool);
 	private:
 		void head();
 		void neck();

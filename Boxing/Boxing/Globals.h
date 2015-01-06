@@ -16,6 +16,15 @@
 #define Pi				3.14159
 #define START_ANGLE		0.0
 #define TIMERMSECS		40 
+#define NUM_OF_TEXTURES 6
+
+#define HEAD_TEXTURE_ID 0
+#define BODY_TEXTURE_ID 1
+#define HAND_TEXTURE_ID 2
+#define GLOVE_TEXTURE_ID 3
+#define LEG_TEXTURE_ID 4
+#define SHORTS_TEXTURE_ID 5
+#define UNDEFINED_TEXTURE_ID 6
 
 // Display lists
 #define TRIBUNE_LIST			1 
@@ -54,3 +63,6 @@ const GLdouble RIGHT_X_WALL_T = WORLD_WIDTH_T / 2;
 const GLfloat TRIBUNE_AMBIENT_DIFFUSE[] = { 1.0, 1.0, 0.0, 1.0 }; //color of material: red
 const GLfloat TRIBUNE_SPECULAR[] = { 0.0, 0.0, 0.2, 1.0 }; //colors of reflection of material:white
 const GLfloat TRIBUNE_SHININESS[] = { 12.0 };
+
+extern GLfloat BoxerAng1[17];
+extern GLfloat BoxerAng2[17];

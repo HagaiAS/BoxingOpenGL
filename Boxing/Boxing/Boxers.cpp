@@ -1,7 +1,5 @@
 #include "Boxers.h"
 
-const GLdouble BoxersDistance = 80.0;
-const GLdouble BoxersMoveLegs = 12.0;
 /*
 Define of body properties
 */
@@ -43,12 +41,6 @@ bool hflag = false;
 //16 right footX
 GLfloat BoxerAng1[17] =
 {
-	//1, 2, 3, 90.0 - 60.0,
-	//-20.0 - 100.0, 90.0 - 50.0, -20.0 - 60.0, S,
-	//0.0 + 10.0, S, 0.0 + 40.0, 0.0 + 5.0,
-	//S, S, S, 0.0 + 20.0, S
-
-
 	0.0, 0.0, 0.0, 30.0,
 	-120.0, 40.0, -80.0, 180.0,
 	10.0, 180.0, 40.0, 5.0,
@@ -57,42 +49,52 @@ GLfloat BoxerAng1[17] =
 
 GLfloat BoxerAng2[17] =
 {
-	52.0, 0.0, 0.0, 10.0,
+	0.0, 0.0, 0.0, 10.0,
 	-80.0, 40.0, -30.0, 180.0,
 	10.0, 180.0, 30.0, 5.0,
 	30.0, 0.0, 0.0, 20.0, 0.0
 };
 
 // Default Ctor
-Boxers::Boxers()
+Boxers::Boxers(GLfloat* boxerAng)
 {
-	BoxerAngles1 = BoxerAng1;
-	BoxerAngles2 = BoxerAng2;
+	BoxerAngles = boxerAng;
 }
 
-// Draw red boxer
-void Boxers::draw_boxer1(GLfloat movingX)
+// Initialize the body of the boxer and his textures
+void Boxers::init_body(GLuint* boxerTextures, bool opponent, GLfloat r, GLfloat g, GLfloat b)
+{
+	red = r;
+	green = g;
+	blue = b;
+	isOpponent = opponent;
+	
+	Body::init_body(boxerTextures, true);
+}
+
+// Draw boxer
+void Boxers::draw_boxer(GLfloat movingX)
 {
 	glPushMatrix();
-		glTranslatef(movingX, FLOOR_Y_B, -BoxersDistance);
-		glColor3f(0.7, 0., 0.);
-		draw_body(BoxerAngles1);
-	glPopMatrix();
-}
-
-// Draw blue boxer
-void Boxers::draw_boxer2(GLfloat movingX)
-{
-	glPushMatrix();		
-		glTranslatef(movingX, FLOOR_Y_B, BoxersDistance);
-		glRotatef(-180., 0., 1., 0.);
-		glColor3f(0., 0.3, 1.0);
-		draw_body(BoxerAngles2);
+		
+		// If the boxer is the opponent - rotate him
+		if (isOpponent)
+		{
+			glTranslatef(movingX, FLOOR_Y_B, BoxersDistance);
+			glRotatef(-180., 0., 1., 0.);
+		}
+		else
+		{
+			glTranslatef(movingX, FLOOR_Y_B, -BoxersDistance);
+		}
+		
+		glColor3f(red, green, blue);
+		draw_body(BoxerAngles);
 	glPopMatrix();
 }
 
 //--------------------------------Animation functions-----------------------
-void Boxers::animate_boxers_walk(GLfloat* BoxerAngles)
+void Boxers::animate_boxer_walk()
 {
 	if (BoxerAngles[3] >= 160.0) flag1 = false;
 	if (BoxerAngles[3] <= 10.0)  flag1 = true;
@@ -150,7 +152,7 @@ void Boxers::animate_boxers_walk(GLfloat* BoxerAngles)
 	glutPostRedisplay();
 }
 
-void Boxers::animate_boxers_fight(GLfloat* BoxerAngles)
+void Boxers::animate_boxer_fight()
 {
 	if (flag1) {
 		BoxerAngles[3] -= 15.0;
