@@ -90,6 +90,7 @@
     <ClCompile Include="Entrance.cpp" />
     <ClCompile Include="ImageLoader.cpp" />
     <ClCompile Include="Inputs.cpp" />
+    <ClCompile Include="RgbImage.cpp" />
     <ClCompile Include="Tribune.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -104,16 +105,25 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Inputs.h" />
+    <ClInclude Include="RgbImage.h" />
     <ClInclude Include="Tribune.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="body.bmp" />
+    <Image Include="clubberBody.bmp" />
+    <Image Include="clubberHand.bmp" />
+    <Image Include="clubberHead.bmp" />
+    <Image Include="clubberShorts.bmp" />
+    <Image Include="clubberSkin.bmp" />
+    <Image Include="floorTile.bmp" />
     <Image Include="gloves.bmp" />
     <Image Include="legs.bmp" />
+    <Image Include="rockyBody.bmp" />
     <Image Include="rockyHand.bmp" />
     <Image Include="rockyHead.bmp" />
     <Image Include="rockyShorts.bmp" />
+    <Image Include="rockySkin.bmp" />
+    <Image Include="wallTile.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
 #include "Globals.h"
 const GLdouble WORLD_WIDTH_E = WINDOW_WIDTH - (WINDOW_WIDTH / 10);
-const GLdouble WORLD_HEIGHT_E = WINDOW_HEIGHT - (WINDOW_HEIGHT / 10);
+const GLdouble WORLD_HEIGHT_E = WINDOW_HEIGHT - (WINDOW_HEIGHT / 12);
 
 const GLdouble FLOOR_Y_E = -WORLD_HEIGHT_E / 2;
 const GLdouble FRONT_Z_WALL_E = WORLD_WIDTH_E / 2;

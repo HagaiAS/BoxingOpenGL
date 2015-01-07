@@ -37,22 +37,26 @@ GLfloat CLAPPING_SPEED = 10.0;
 GLfloat HANDS_UP_SPEED = 5.0;
 
 // The textures id and files
-GLuint boxer1Textures[NUM_OF_TEXTURES];
-GLuint boxer2Textures[NUM_OF_TEXTURES];
-GLuint crowdTextures[NUM_OF_TEXTURES];
-char* rockyTextureFiles[NUM_OF_TEXTURES] = {	"./rockyHead.bmp",
-												"./body.bmp",
+GLuint worldTextures[NUM_OF_WORLD_TEXTURES];
+GLuint boxer1Textures[NUM_OF_BODY_TEXTURES];
+GLuint boxer2Textures[NUM_OF_BODY_TEXTURES];
+GLuint crowdTextures[NUM_OF_BODY_TEXTURES];
+
+char* worldTextureFiles[NUM_OF_WORLD_TEXTURES] = { "./wallTile.bmp",
+												   "./floorTile.bmp" };
+char* rockyTextureFiles[NUM_OF_BODY_TEXTURES] = { "./rockyHead.bmp",
+												"./rockyBody.bmp",
 												"./rockyHand.bmp",
-												"./gloves.bmp",
-												"./legs.bmp",
+												"./-.bmp",
+												"./rockySkin.bmp",
 												"./rockyShorts.bmp" };
-char* apolloTextureFiles[NUM_OF_TEXTURES] = {	"./rockyHead.bmp",
-												"./body.bmp", 
-												"./rockyHand.bmp",
-												"./gloves.bmp",
-												"./legs.bmp",
-												"./rockyShorts.bmp" };
-char* crowdTextureFiles[NUM_OF_TEXTURES] = {	"./-.bmp",
+char* clubberTextureFiles[NUM_OF_BODY_TEXTURES] = { "./clubberHead.bmp",
+												"./clubberBody.bmp", 
+												"./clubberHand.bmp",
+												"./-.bmp",
+												"./clubberSkin.bmp",
+												"./clubberShorts.bmp" };
+char* crowdTextureFiles[NUM_OF_BODY_TEXTURES] = { "./-.bmp",
 												"./-.bmp",
 												"./-.bmp",
 												"./-.bmp",
@@ -100,12 +104,14 @@ void my_init(void)
 
 	// Read all texture files
 	readTextures(rockyTextureFiles, boxer1Textures);
-	readTextures(apolloTextureFiles, boxer2Textures);
+	readTextures(clubberTextureFiles, boxer2Textures);
 	readTextures(crowdTextureFiles, crowdTextures);
+	loadTextureFromFile(worldTextureFiles[WALL_TEXTURE_ID], worldTextures, WALL_TEXTURE_ID);
+	loadTextureFromFile(worldTextureFiles[FLOOR_TEXTURE_ID], worldTextures, FLOOR_TEXTURE_ID);
 
 	// Initialize the bodies
-	boxer1.init_body(boxer1Textures, true, 0.7, 0., 0.);
-	boxer2.init_body(boxer2Textures, false, 0., 0., 0.8);
+	boxer1.init_body(boxer1Textures, false, 1., 0., 0.);
+	boxer2.init_body(boxer2Textures, true, 0., 0., 1.);
 	crowd.init_body(crowdTextures, false);
 
 	// Set the materials to be tracked by the color
@@ -128,25 +134,6 @@ void my_display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   //DEPTH_BUFFER
 
-	//glPushMatrix();
-	//	glEnable(GL_TEXTURE_2D);
-	//		glBindTexture(GL_TEXTURE_2D, textures[0]);
-	//	
-	//		glBegin(GL_QUADS);
-	//			// Front Face
-	//			glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-	//			glTexCoord2f(2.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-	//			glTexCoord2f(2.0f, 2.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-	//			glTexCoord2f(0.0f, 2.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
-	//			// Back Face
-	//			glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
-	//			glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
-	//			glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
-	//			glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
-	//		glEnd();
-	//	glDisable(GL_TEXTURE_2D);
-	//glPopMatrix();
-
 	// Draw all objects
 	draw_axes();
 	draw_world();
@@ -164,7 +151,7 @@ void my_display(void)
 // This method load the textures from all files and updates the id of each texture
 void readTextures(char** fileNames, GLuint* textures)
 {
-	for (int currTexture = 0; currTexture < NUM_OF_TEXTURES; currTexture++)
+	for (int currTexture = 0; currTexture < NUM_OF_BODY_TEXTURES; currTexture++)
 	{
 		loadTextureFromFile(fileNames[currTexture], textures, currTexture);
 	}
@@ -183,7 +170,7 @@ void my_idle(void)
 	// If the red boxer is inside the arena - move it
 	if ((ARENA_SIZE / 2) >= abs(BOXER_RED_MOVING_X + BOXER_RED_MOVING_SPEED) + TORSO_RADIUS)
 	{
-		BOXER_RED_MOVING_X += BOXER_RED_MOVING_SPEED;
+		//BOXER_RED_MOVING_X += BOXER_RED_MOVING_SPEED;
 	}
 	else
 	{
@@ -194,7 +181,7 @@ void my_idle(void)
 	// If the blue boxer is inside the arena - move it
 	if ((ARENA_SIZE / 2) >= abs(BOXER_BLUE_MOVING_X + BOXER_BLUE_MOVING_SPEED) + TORSO_RADIUS)
 	{
-		BOXER_BLUE_MOVING_X += BOXER_BLUE_MOVING_SPEED;
+		//BOXER_BLUE_MOVING_X += BOXER_BLUE_MOVING_SPEED;
 	}
 	else
 	{

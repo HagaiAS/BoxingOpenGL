@@ -38,7 +38,7 @@ void Body::head()
 		glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, textures[HEAD_TEXTURE_ID]);
 			gluQuadricTexture(headObj, 1);
-			gluSphere(headObj, 1.0, 10, 10);
+			gluSphere(headObj, 1.0, 20, 20);
 
 		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
@@ -48,7 +48,13 @@ void Body::neck()
 {
 	glPushMatrix();
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
-		gluCylinder(n,NECK_RADIUS, NECK_RADIUS, NECK_HEIGHT,10,10);
+
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[SKIN_TEXTURE_ID]);
+			gluQuadricTexture(n, 1);
+			gluCylinder(n, NECK_RADIUS, NECK_RADIUS, NECK_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -56,14 +62,25 @@ void Body::joint_point()
 {
 	glPushMatrix();
 		glScalef(JOINT_POINT_RADIUS, JOINT_POINT_HEIGHT, JOINT_POINT_RADIUS);
-		gluSphere(jp,1.0,10,10);
+		
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[SKIN_TEXTURE_ID]);
+			gluQuadricTexture(jp, 1);
+			gluSphere(jp, 1.0, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
 void Body::left_upper_arm()
 {
 	glPushMatrix();
-		gluCylinder(lua,UPPER_ARM_RADIUS, UPPER_ARM_RADIUS, UPPER_ARM_HEIGHT,10,10);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[SKIN_TEXTURE_ID]);
+			gluQuadricTexture(lua, 1);
+			gluCylinder(lua, UPPER_ARM_RADIUS, UPPER_ARM_RADIUS, UPPER_ARM_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
     glPopMatrix();
 }
 
@@ -73,7 +90,7 @@ void Body::left_lower_arm()
 		glRotatef(0.0, 1.0, 0.0, 0.0);
 		
 		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, textures[HAND_TEXTURE_ID]);
+			glBindTexture(GL_TEXTURE_2D, textures[HAND_TEXTURE_ID]);
 			gluQuadricTexture(lla, 1);
 			gluCylinder(lla, LOWER_ARM_RADIUS, LOWER_ARM_RADIUS, LOWER_ARM_HEIGHT, 10, 10);
 
@@ -85,12 +102,19 @@ void Body::left_hand()
 {
 	glPushMatrix();
 		glRotatef(90.0, 1.0, 0.0, 0.0);
-		glScalef(HAND_RADIUS, HAND_HEIGHT, HAND_RADIUS);
+		glScalef(handRadius, HAND_HEIGHT, handRadius);
 		
 		glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, textures[GLOVE_TEXTURE_ID]);
 			gluQuadricTexture(lhnd, 1);
 			gluSphere(lhnd, 1.0, 10, 10);
+			
+			// If should draw a glove
+			if (boxer)
+			{
+				glTranslatef(handRadius / 5, 0., 0.);
+				glutSolidSphere(0.4, 10, 10);
+			}
 
 		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
@@ -99,7 +123,12 @@ void Body::left_hand()
 void Body::right_upper_arm()
 {
 	glPushMatrix();
-		gluCylinder(rua,UPPER_ARM_RADIUS, UPPER_ARM_RADIUS, UPPER_ARM_HEIGHT,10,10);
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, textures[SKIN_TEXTURE_ID]);
+			gluQuadricTexture(rua, 1);
+			gluCylinder(rua, UPPER_ARM_RADIUS, UPPER_ARM_RADIUS, UPPER_ARM_HEIGHT, 10, 10);
+
+		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 }
 
@@ -119,12 +148,19 @@ void Body::right_hand()
 {
 	glPushMatrix();
 		glRotatef(90.0, 1.0, 0.0, 0.0);
-		glScalef(HAND_RADIUS, HAND_HEIGHT, HAND_RADIUS);
+		glScalef(handRadius, HAND_HEIGHT, handRadius);
 
 		glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, textures[GLOVE_TEXTURE_ID]);
 			gluQuadricTexture(rhnd, 1);
 			gluSphere(rhnd, 1.0, 10, 10);
+			
+			// If should draw a glove
+			if (boxer)
+			{
+				glTranslatef(-handRadius / 5, 0., 0.);
+				glutSolidSphere(0.4, 10, 10);
+			}
 
 		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
@@ -138,7 +174,7 @@ void Body::left_upper_leg()
 		glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, textures[SHORTS_TEXTURE_ID]);
 			gluQuadricTexture(lul, 1);
-			gluCylinder(lul, UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT, 10, 10);
+			gluCylinder(lul, upperLegRadius, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT, 10, 10);
 
 		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
@@ -150,7 +186,7 @@ void Body::left_lower_leg()
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
 
 		glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, textures[LEG_TEXTURE_ID]);
+			glBindTexture(GL_TEXTURE_2D, textures[SKIN_TEXTURE_ID]);
 			gluQuadricTexture(lll, 1);
 			gluCylinder(lll, LOWER_LEG_RADIUS, LOWER_LEG_RADIUS, LOWER_LEG_HEIGHT, 10, 10);
 		
@@ -175,7 +211,7 @@ void Body::right_upper_leg()
 		glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, textures[SHORTS_TEXTURE_ID]);
 			gluQuadricTexture(rul, 1);
-			gluCylinder(rul, UPPER_LEG_RADIUS, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT, 10, 10);
+			gluCylinder(rul, upperLegRadius, UPPER_LEG_RADIUS, UPPER_LEG_HEIGHT, 10, 10);
 
 		glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
@@ -187,7 +223,7 @@ void Body::right_lower_leg()
 		glRotatef(-90.0, 1.0, 0.0, 0.0);
 
 		glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, textures[LEG_TEXTURE_ID]);
+			glBindTexture(GL_TEXTURE_2D, textures[SKIN_TEXTURE_ID]);
 			gluQuadricTexture(rll, 1);
 			gluCylinder(rll, LOWER_LEG_RADIUS, LOWER_LEG_RADIUS, LOWER_LEG_HEIGHT, 10, 10);
 
@@ -272,7 +308,7 @@ void Body::draw_body(GLfloat *init_theta)
 	glPopMatrix();
 
 	glPushMatrix();	
-		glTranslatef(-(TORSO_RADIUS-JOINT_POINT_RADIUS), -0.15*JOINT_POINT_HEIGHT, 0.0);
+		glTranslatef(-(TORSO_RADIUS - JOINT_POINT_RADIUS* 1.5), -0.15*JOINT_POINT_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0, 0.1*JOINT_POINT_HEIGHT, 0.0);
 		glRotatef(theta[7], 1.0, 0.0, 0.0);
@@ -289,7 +325,7 @@ void Body::draw_body(GLfloat *init_theta)
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(TORSO_RADIUS-JOINT_POINT_RADIUS, -0.15*JOINT_POINT_HEIGHT, 0.0);
+		glTranslatef(TORSO_RADIUS-JOINT_POINT_RADIUS * 1.5, -0.15*JOINT_POINT_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0, 0.1*JOINT_POINT_HEIGHT, 0.0);
 		glRotatef(theta[9], 1.0, 0.0, 0.0);
@@ -341,7 +377,10 @@ void Body::init_body(GLuint* bodyTextures, bool isBoxer)
 	// If it is a boxer body - increase the torso top radius
 	if (isBoxer)
 	{
+		boxer = isBoxer;
 		torsoTopRadius = TORSO_TOP_RADIUS;
+		handRadius = GLOVE_RADIUS;
+		upperLegRadius = UPPER_LEG_TOP_RADIUS;
 	}
 
 	n = gluNewQuadric();

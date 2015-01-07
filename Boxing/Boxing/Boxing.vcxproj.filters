@@ -48,6 +48,9 @@
     <ClCompile Include="ImageLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RgbImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tribune.h">
@@ -86,25 +89,52 @@
     <ClInclude Include="ImageLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RgbImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="body.bmp">
-      <Filter>Source Files</Filter>
-    </Image>
     <Image Include="gloves.bmp">
-      <Filter>Source Files</Filter>
-    </Image>
-    <Image Include="legs.bmp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
     <Image Include="rockyHand.bmp">
-      <Filter>Source Files</Filter>
-    </Image>
-    <Image Include="rockyShorts.bmp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
     <Image Include="rockyHead.bmp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rockyShorts.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="legs.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rockyBody.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rockySkin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="clubberBody.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="clubberHand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="clubberShorts.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="clubberSkin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="clubberHead.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="floorTile.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="wallTile.bmp">
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
 </Project>

@@ -53,8 +53,62 @@ void draw_lamp()
 
 void draw_world() {
 	glPushMatrix();
-		glColor3f(0.1, 0.1, 0.1);
+
+		glEnable(GL_TEXTURE_2D);
+			glScalef(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, WORLD_WIDTH / 2);
+			glBindTexture(GL_TEXTURE_2D, worldTextures[WALL_TEXTURE_ID]);
+			
+			glBegin(GL_QUADS);
+
+				// Front Face
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+				glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+				glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+				// Back Face
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+				glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+				glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+				// Top Face
+				glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+				glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+				// Right face
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, -1.0f);
+				glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, -1.0f);
+				glTexCoord2f(0.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+				// Left Face
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, -1.0f);
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+				glTexCoord2f(1.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+				glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, -1.0f);
+			glEnd();
+
+			glBindTexture(GL_TEXTURE_2D, worldTextures[FLOOR_TEXTURE_ID]);
+
+			glBegin(GL_QUADS);
+				// Bottom Face - floor
+				glTexCoord2f(NUM_OF_FLOOR_TILES, NUM_OF_FLOOR_TILES);
+				glVertex3f(-1.0f, -1.0f, -1.0f);
+				glTexCoord2f(0.0f, NUM_OF_FLOOR_TILES);
+				glVertex3f(1.0f, -1.0f, -1.0f);
+				glTexCoord2f(0.0f, 0.0f);
+				glVertex3f(1.0f, -1.0f, 1.0f);
+				glTexCoord2f(NUM_OF_FLOOR_TILES, 0.0f);
+				glVertex3f(-1.0f, -1.0f, 1.0f);
+			glEnd();
+		glDisable(GL_TEXTURE_2D);
+
+		/*glColor3f(0.1, 0.1, 0.1);
 		glScalef(1., WORLD_HEIGHT / WORLD_WIDTH, 1.);
-		glutSolidCube(WORLD_WIDTH);
+		
+		glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, worldTextures[0]);
+			glutSolidCube(WORLD_WIDTH);
+
+		glDisable(GL_TEXTURE_2D);*/
 	glPopMatrix();
 }

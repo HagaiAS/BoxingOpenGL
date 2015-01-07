@@ -16,13 +16,18 @@
 #define Pi				3.14159
 #define START_ANGLE		0.0
 #define TIMERMSECS		40 
-#define NUM_OF_TEXTURES 6
+#define NUM_OF_BODY_TEXTURES 6
+#define NUM_OF_WORLD_TEXTURES 2
+#define NUM_OF_FLOOR_TILES 12
+
+#define WALL_TEXTURE_ID 0
+#define FLOOR_TEXTURE_ID 1
 
 #define HEAD_TEXTURE_ID 0
 #define BODY_TEXTURE_ID 1
 #define HAND_TEXTURE_ID 2
 #define GLOVE_TEXTURE_ID 3
-#define LEG_TEXTURE_ID 4
+#define SKIN_TEXTURE_ID 4
 #define SHORTS_TEXTURE_ID 5
 #define UNDEFINED_TEXTURE_ID 6
 
@@ -36,7 +41,7 @@
 
 // World
 const GLdouble WORLD_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 10);
-const GLdouble WORLD_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 10);
+const GLdouble WORLD_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 12);
 
 // Edges
 const GLdouble LEFT_EDGE = -WINDOW_WIDTH / 2;
@@ -55,7 +60,7 @@ const GLdouble TRIBUNES_Y_SCALE = 0.05;
 const GLdouble TRIBUNES_Z_SCALE = 0.5;
 
 const GLdouble WORLD_WIDTH_T = WINDOW_WIDTH - (WINDOW_WIDTH / 10);
-const GLdouble WORLD_HEIGHT_T = WINDOW_HEIGHT - (WINDOW_HEIGHT / 10);
+const GLdouble WORLD_HEIGHT_T = WINDOW_HEIGHT - (WINDOW_HEIGHT / 12);
 const GLdouble FLOOR_Y_T = -WORLD_HEIGHT_T / 2;
 const GLdouble FRONT_Z_WALL_T = WORLD_WIDTH_T / 2;
 const GLdouble RIGHT_X_WALL_T = WORLD_WIDTH_T / 2;
@@ -66,3 +71,4 @@ const GLfloat TRIBUNE_SHININESS[] = { 12.0 };
 
 extern GLfloat BoxerAng1[17];
 extern GLfloat BoxerAng2[17];
+extern GLuint worldTextures[NUM_OF_WORLD_TEXTURES];

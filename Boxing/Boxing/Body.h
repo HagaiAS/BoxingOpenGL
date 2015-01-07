@@ -11,24 +11,26 @@ const GLfloat LOWER_ARM_HEIGHT = 2.3 * BODY_SCALE;
 const GLfloat UPPER_ARM_RADIUS = 0.5 * BODY_SCALE;
 const GLfloat LOWER_ARM_RADIUS = 0.5 * BODY_SCALE;
 const GLfloat UPPER_LEG_RADIUS = 0.5 * BODY_SCALE;
+const GLfloat UPPER_LEG_TOP_RADIUS = UPPER_LEG_RADIUS * 1.7;
 const GLfloat LOWER_LEG_RADIUS = 0.5 * BODY_SCALE;
 const GLfloat LOWER_LEG_HEIGHT = 3.1 * BODY_SCALE;
 const GLfloat UPPER_LEG_HEIGHT = 3.3 * BODY_SCALE;
-const GLfloat HEAD_HEIGHT = 1.2 * BODY_SCALE;
-const GLfloat HEAD_RADIUS = 1.4	* BODY_SCALE;
-const GLfloat HAND_RADIUS = 0.6	* BODY_SCALE;
+const GLfloat HEAD_HEIGHT = 0.9 * BODY_SCALE;
+const GLfloat HEAD_RADIUS = 1.2	* BODY_SCALE;
+const GLfloat HAND_RADIUS = 0.5	* BODY_SCALE;
+const GLfloat GLOVE_RADIUS = HAND_RADIUS * 1.4;
 const GLfloat HAND_HEIGHT = 0.9	* BODY_SCALE;
 const GLfloat FOOT_RADIUS = 0.7	* BODY_SCALE;
 const GLfloat FOOT_HEIGHT = 1.1	* BODY_SCALE;
 const GLfloat NECK_RADIUS = 0.5	* BODY_SCALE;
-const GLfloat NECK_HEIGHT = 1.0	* BODY_SCALE;
+const GLfloat NECK_HEIGHT = 0.7	* BODY_SCALE;
 const GLfloat JOINT_POINT_RADIUS = 0.5 * BODY_SCALE;
 const GLfloat JOINT_POINT_HEIGHT = 0.5 * BODY_SCALE;
 
 const GLdouble ARENA_SIZE_B = WINDOW_WIDTH / 5;
 const GLdouble ARENA_Y_SCALE_B = 0.3;
 //
-const GLdouble WORLD_HEIGHT_B = WINDOW_HEIGHT - (WINDOW_HEIGHT / 10);
+const GLdouble WORLD_HEIGHT_B = WINDOW_HEIGHT - (WINDOW_HEIGHT / 12);
 const GLdouble ARENA_FLOOR_Y = (ARENA_Y_SCALE_B * ARENA_SIZE_B);
 const GLdouble FLOOR_Y_B = (-WORLD_HEIGHT_B / 2) + ARENA_FLOOR_Y + LOWER_LEG_HEIGHT + UPPER_LEG_HEIGHT;
 
@@ -39,6 +41,9 @@ class Body
 		// Textures
 		GLuint* textures;
 		GLfloat torsoTopRadius = TORSO_RADIUS;
+		GLfloat handRadius = HAND_RADIUS;
+		GLfloat upperLegRadius = UPPER_LEG_RADIUS;
+		bool boxer = false;
 
 		Body(){};
 		~Body(){};
