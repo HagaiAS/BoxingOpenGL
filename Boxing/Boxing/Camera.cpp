@@ -111,7 +111,7 @@ void Camera::topView()
 	angle = 0.0;
 	x = 0;
 	z = 0;
-	y = TOP_EDGE * 0.902;
+	y = TOP_EDGE * 0.91;
 	centerX = 0;
 	centerZ = -1;
 	centerY = 0;
