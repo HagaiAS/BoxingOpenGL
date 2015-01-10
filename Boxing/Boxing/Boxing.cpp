@@ -8,7 +8,6 @@
 #include "Inputs.h"
 #include "Boxers.h"
 #include "Crowd.h"
-#include "ImageLoader.h"
 #include "RgbImage.h"
 
 void my_init(void);
@@ -16,6 +15,7 @@ void my_display(void);
 void make_delay(int);
 void my_idle(void);
 void printInstructions(void);
+void my_menu(int);
 void clapHands();
 void moveHandsUp();
 void loadTextureFromFile(char*, GLuint*, GLuint);
@@ -86,6 +86,14 @@ GLfloat crowdAnglesUpArms[17] =
 	0.0, 0.0, // left upper / right upper legZ
 	20.0, 20.0 // left / right footX
 };
+
+// For the menu
+bool lightsOn = true;
+bool boxersAnimationOn = true;
+bool crowdAnimationOn = true;
+bool topViewOn = false;
+bool slowMotionOn = false;
+int timerSeconds = TIMERMSECS;
 
 //--------------------------------Initialization function-------------------------
 void my_init(void)
@@ -161,7 +169,7 @@ void readTextures(char** fileNames, GLuint* textures)
 void make_delay(int)
 {
 	my_idle();
-	glutTimerFunc(TIMERMSECS, make_delay, 1);
+	glutTimerFunc(timerSeconds, make_delay, 1);
 }
 
 // This method change the angles for each draw
@@ -189,17 +197,25 @@ void my_idle(void)
 		BOXER_BLUE_MOVING_SPEED *= -1;
 	}
 
-	// Move the boxer legs infinity
-	boxer1.animate_boxer_walk();
-	boxer2.animate_boxer_walk();
-	//boxer1.animate_boxer_fight();
-	//boxer2.animate_boxer_fight();
+	// If need to animate the boxers
+	if (boxersAnimationOn)
+	{
+		// Move the boxer legs infinity
+		boxer1.animate_boxer_walk();
+		boxer2.animate_boxer_walk();
+		//boxer1.animate_boxer_fight();
+		//boxer2.animate_boxer_fight();
+	}
 
-	// Move clapping hands
-	clapHands();
+	// If need to animate the crowd
+	if (crowdAnimationOn)
+	{
+		// Move clapping hands
+		clapHands();
 
-	// Move hands up and down
-	moveHandsUp();
+		// Move hands up and down
+		moveHandsUp();
+	}
 
 	// Call redisplay again
 	glutPostRedisplay();
@@ -239,6 +255,61 @@ void printInstructions()
 		 << endl
 		 << "In animate mode:" << endl
 		 << "Press the up/down arrow keys to speed up/slow down animation." << endl;
+}
+
+// This method handles the user's selected options
+void my_menu(int id)
+{
+	// Turn lights on/off
+	if (id == 1) {
+		if (lightsOn) {
+			glDisable(GL_LIGHT0);
+			lightsOn = false;
+		}
+		else {
+			glEnable(GL_LIGHT0);
+			lightsOn = true;
+		}
+	}
+
+	// Turn boxer animation on/off
+	if (id == 2) {
+		if (boxersAnimationOn)
+			boxersAnimationOn = false;
+		else
+			boxersAnimationOn = true;
+	}
+
+	// Turn crowd animation on/off
+	if (id == 3) {
+		if (crowdAnimationOn)
+			crowdAnimationOn = false;
+		else
+			crowdAnimationOn = true;
+	}
+
+	// Turn top view on/off
+	if (id == 4) {
+		if (topViewOn)
+			glDisable(GL_LIGHT0);
+		else
+			glEnable(GL_LIGHT0);
+	}
+
+	// Turn slow motion on/off
+	if (id == 5) {
+		if (slowMotionOn) {
+			timerSeconds = TIMERMSECS;
+			slowMotionOn = false;
+		}
+		else {
+			timerSeconds = TIMERMSECS * 4;
+			slowMotionOn = true;
+		}
+	}
+
+	// Exit the program
+	if (id == 6) exit(0);
 }
 
 // This method read a texture map from a BMP bitmap file and insert the id into the textures list
@@ -287,6 +358,16 @@ void main(int argc, char **argv)
 
 	// Initialize everything
 	my_init();
+
+	// Set the menu options
+	glutCreateMenu(my_menu);
+	glutAddMenuEntry("1.Lights - ON/OFF", 1);
+	glutAddMenuEntry("2.Boxers animation - ON/OFF", 2);
+	glutAddMenuEntry("3.Crowd animation - ON/OFF", 3);
+	/*glutAddMenuEntry("4.Top view - ON/OFF", 4);
+	glutAddMenuEntry("5.Slow motion! - ON/OFF", 5);*/
+	glutAddMenuEntry("4.exit", 6);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	// Set display function and timer function (the changes every loop)
 	glutDisplayFunc(my_display);

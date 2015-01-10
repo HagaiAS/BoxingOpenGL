@@ -6,8 +6,10 @@ class Boxers : public Body
 	public:
 		GLfloat red, green, blue = 0;
 		GLfloat *BoxerAngles;
-		GLdouble BoxersDistance = 80.0;
-		GLdouble BoxersMoveLegs = 12.0;
+		GLdouble BoxersDistance = 30.0;
+		GLdouble BoxersMoveLegs = 4.0;
+		GLdouble BoxersMoveLowLegs = 6.0;
+		GLdouble BoxersMoveHands = 10.0;
 		bool isOpponent;
 
 		Boxers(){};
