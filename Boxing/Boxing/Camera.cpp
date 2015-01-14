@@ -3,10 +3,7 @@
 // Camera constructor.
 Camera::Camera()
 {
-	isTopView = 0;
-
-	initCameraPosition();
-
+	isTopView = false;
 	angle = 0.0;
 	rotatingSpeed = 0.04;
 	movingSpeed = 12.0;
@@ -116,13 +113,73 @@ void Camera::topView()
 	centerZ = -1;
 	centerY = 0;
 	
-	isTopView = 1;
+	isTopView = true;
+	updateView();
+}
+
+void Camera::sideView()
+{
+	centerX = -0.9;
+	centerY = -0.19;
+	centerZ = -0.01;
+	x = 300;
+	y = -166;
+	z = 3.4;
+	angle = -1.52;
+	updateView();
+}
+
+void Camera::cornerView()
+{
+	centerX = 0.6;
+	centerY = -0.4;
+	centerZ = -0.9;
+	x = -433;
+	y = 14;
+	z = 563;
+	angle = 0.6;
+	updateView();
+}
+
+void Camera::rockyView()
+{
+	centerX = 0.7;
+	centerY = -0.03;
+	centerZ = 0.7;
+	x = -179;
+	y = -176;
+	z = -175;
+	angle = -3.9;
+	updateView();
+}
+
+void Camera::clubberView()
+{
+	centerX = -0.7;
+	centerY = -0.03;
+	centerZ = -0.7;
+	x = 181;
+	y = -176;
+	z = 186;
+	angle = -0.7;
+	updateView();
+}
+
+void Camera::crowdView()
+{
+	angle = 0.0;
+	centerX = -0.2;
+	centerY = 0;
+	centerZ = -0.9;
+	x = 197;
+	y = -155;
+	z = 535;
 	updateView();
 }
 
 void Camera::topViewDisable()
 {
-	isTopView = 0;
+	isTopView = false;
 	initCameraPosition();
 	updateView();
 }

@@ -13,7 +13,7 @@ const GLfloat LIGHT_POS_X = 0;
 const GLfloat LIGHT_POS_Y = 100;
 const GLfloat LIGHT_POS_Z = 0;
 const GLfloat LIGHT0_DIFFUSE[] = { 1.0, 1.0, 1.0, 1. };     //color of light - white 
-const GLfloat LIGHT0_POSITION[] = { LIGHT_POS_X, LIGHT_POS_Y, LIGHT_POS_Z, 1.}; //w=1; for position of positional source(point of light) to all directions
+const GLfloat LIGHT0_POSITION[] = { LIGHT_POS_X, LIGHT_POS_Y, LIGHT_POS_Z, 0.}; //w=1; for position of positional source(point of light) to all directions
 
 void draw_axes();
 void draw_world();

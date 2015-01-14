@@ -35,7 +35,8 @@ GLfloat crowdRandomColors[NUMBER_OF_CROWD_COLORS * 3] =
 	0.8, 0.0, 0.1,
 	0.2, 0.4, 0.5,
 	0.1, 0.0, 1.0,
-	0.9, 0.2, 0.4
+	0.9, 0.2, 0.4,
+	0.4, 0.1, 0.3
 };
 
 // Default Ctor
@@ -46,22 +47,7 @@ Crowd::Crowd()
 
 void Crowd::draw_crowds(GLfloat* crowdAnglesClapping, GLfloat* crowdAnglesUpHands)
 {
-	//glNewList(CROWD_LIST, GL_COMPILE);
-	//	glPushMatrix();		
-	//		glTranslatef(0., FLOOR_Y_B, -CrowdDistance);
-	//		//glClearColor(1, 1, 0.5, 0.0);
-	//		glColor3ub(0, 0, 0);
-	//		glColor3f(1, 0.5, 0.5);
-	//		draw_body(crowdAngles);
-	//	glPopMatrix();
-	//glEndList();
-
-	//glPushMatrix();
-	//	glCallList(CROWD_LIST);
-	//	glTranslatef(0., FLOOR_Y_B, CrowdDistance);
-	//	glCallList(CROWD_LIST);
-	//glPopMatrix();
-	int crowType;
+	int crowdType;
 
 	// Create new display list for crowd clapping man
 	glNewList(CROWD_CLAPPING_LIST, GL_COMPILE);
@@ -73,7 +59,7 @@ void Crowd::draw_crowds(GLfloat* crowdAnglesClapping, GLfloat* crowdAnglesUpHand
 	// Create new display list for crowd man
 	glNewList(CROWD_HANDS_UP_LIST, GL_COMPILE);
 		glPushMatrix();
-		draw_body(crowdAnglesUpHands);
+			draw_body(crowdAnglesUpHands);
 		glPopMatrix();
 	glEndList();
 	
@@ -94,7 +80,7 @@ void Crowd::draw_crowds(GLfloat* crowdAnglesClapping, GLfloat* crowdAnglesUpHand
 
 			// Draw next stairs
 			for (int currStair = 1; currStair < NUMBER_OF_STAIRS + 1; currStair++) {
-				crowType = CROWD_CLAPPING_LIST;
+				crowdType = CROWD_CLAPPING_LIST;
 				glScalef(1., 1., deltaScaleZ);
 
 				// Draw row of crowd
@@ -105,15 +91,16 @@ void Crowd::draw_crowds(GLfloat* crowdAnglesClapping, GLfloat* crowdAnglesUpHand
 					// Draw the current crowd man with random color
 					glPushMatrix();
 						
-						if (currColor + 2 >= (NUMBER_OF_CROWD_COLORS * 3)) {
+						// Draw the hands up crowd randomaly
+						if (currColor + NUMBER_OF_CROWD_COLORS/3 >= (NUMBER_OF_CROWD_COLORS * 3)) {
 							currColor = 0;
-							crowType = CROWD_HANDS_UP_LIST;
+							crowdType = CROWD_HANDS_UP_LIST;
 						}
 
 						glColor3f(crowdColors[currColor], crowdColors[currColor + 1], crowdColors[currColor+2]);
 						currColor++;
 
-						glCallList(crowType);
+						glCallList(crowdType);
 					glPopMatrix();
 				}
 

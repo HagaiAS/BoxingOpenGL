@@ -15,10 +15,17 @@
 #define WINDOW_POS_Y	10
 #define Pi				3.14159
 #define START_ANGLE		0.0
-#define TIMERMSECS		40 
+#define TIMERMSECS		30 
 #define NUM_OF_BODY_TEXTURES 6
 #define NUM_OF_WORLD_TEXTURES 2
 #define NUM_OF_FLOOR_TILES 12
+#define BOXERS_MIN_DISTANCE 25
+
+// Do not change these values - it is relevant for the specific scene
+#define TIME_DELTA 0.1
+#define TIME_PARTS 3
+#define SCENE_TOTAL_SEC 80
+#define TIME_PART SCENE_TOTAL_SEC / TIME_PARTS
 
 #define WALL_TEXTURE_ID 0
 #define FLOOR_TEXTURE_ID 1
@@ -54,7 +61,7 @@ const GLdouble INSIDE_EDGE = WINDOW_WIDTH / 2;
 
 const GLint NUMBER_OF_STAIRS = 5;
 const GLint NUMBER_OF_CROWD_IN_ROW = 9;
-const GLint NUMBER_OF_CROWD_COLORS = 4;
+const GLint NUMBER_OF_CROWD_COLORS = 5;
 const GLdouble TRIBUNES_SIZE = (WINDOW_WIDTH / 5) * 1.8;
 const GLdouble TRIBUNES_Y_SCALE = 0.05;
 const GLdouble TRIBUNES_Z_SCALE = 0.5;
@@ -72,3 +79,4 @@ const GLfloat TRIBUNE_SHININESS[] = { 12.0 };
 extern GLfloat BoxerAng1[17];
 extern GLfloat BoxerAng2[17];
 extern GLuint worldTextures[NUM_OF_WORLD_TEXTURES];
+const GLdouble ARENA_SIZE_C = WINDOW_WIDTH / 5;

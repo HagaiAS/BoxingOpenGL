@@ -29,11 +29,15 @@ class Camera
 		void look(GLdouble, int);
 		void topView();
 		void topViewDisable();
-
+		void sideView();
+		void rockyView();
+		void clubberView();
+		void crowdView();
+		void cornerView();
 		void updateView();
 
 	private:
-		int isTopView;
+		bool isTopView;
 		GLdouble x, y, z;
 		GLdouble centerX, centerY, centerZ;
 		GLdouble angle;

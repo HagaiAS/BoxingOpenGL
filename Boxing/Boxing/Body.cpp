@@ -273,9 +273,9 @@ void Body::draw_body(GLfloat *init_theta)
 		glRotatef(theta[1], 1.0, 0.0, 0.0);
 		glRotatef(theta[2], 0.0, 1.0, 0.0);
 		head();
-	glPopMatrix();//add JOINT_POINT_
+	glPopMatrix();
 
-	glPushMatrix();//add JOINT_POINT_
+	glPushMatrix();
 		glTranslatef(-0.85*(torsoTopRadius + JOINT_POINT_RADIUS), 0.9*TORSO_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0.0, 0.0, 0.0);
@@ -308,7 +308,7 @@ void Body::draw_body(GLfloat *init_theta)
 	glPopMatrix();
 
 	glPushMatrix();	
-		glTranslatef(-(TORSO_RADIUS - JOINT_POINT_RADIUS* 1.5), -0.15*JOINT_POINT_HEIGHT, 0.0);
+		glTranslatef(-(TORSO_RADIUS - JOINT_POINT_RADIUS), -0.15*JOINT_POINT_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0, 0.1*JOINT_POINT_HEIGHT, 0.0);
 		glRotatef(theta[7], 1.0, 0.0, 0.0);
@@ -325,7 +325,7 @@ void Body::draw_body(GLfloat *init_theta)
 	glPopMatrix();
 
 	glPushMatrix();
-		glTranslatef(TORSO_RADIUS-JOINT_POINT_RADIUS * 1.5, -0.15*JOINT_POINT_HEIGHT, 0.0);
+		glTranslatef(TORSO_RADIUS-JOINT_POINT_RADIUS , -0.15*JOINT_POINT_HEIGHT, 0.0);
 		joint_point();
 		glTranslatef(0, 0.1*JOINT_POINT_HEIGHT, 0.0);
 		glRotatef(theta[9], 1.0, 0.0, 0.0);
