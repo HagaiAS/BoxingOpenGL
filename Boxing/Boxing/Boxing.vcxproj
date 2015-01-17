@@ -88,25 +88,28 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Crowd.cpp" />
     <ClCompile Include="Entrance.cpp" />
-    <ClCompile Include="ImageLoader.cpp" />
-    <ClCompile Include="Inputs.cpp" />
     <ClCompile Include="RgbImage.cpp" />
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Tribune.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Boxers.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Crowd.h" />
+    <ClInclude Include="Init.h" />
+    <ClInclude Include="Output.h" />
     <ClInclude Include="Entrance.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="ImageLoader.h" />
-    <ClInclude Include="Light.h" />
     <ClInclude Include="Body.h" />
-    <ClInclude Include="Inputs.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Print.h" />
     <ClInclude Include="RgbImage.h" />
+    <ClInclude Include="Textures.h" />
     <ClInclude Include="Tribune.h" />
+    <ClInclude Include="Views.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,4 @@
+#pragma once
 #include "Globals.h"
 const GLdouble WORLD_WIDTH_E = WINDOW_WIDTH - (WINDOW_WIDTH / 10);
 const GLdouble WORLD_HEIGHT_E = WINDOW_HEIGHT - (WINDOW_HEIGHT / 12);

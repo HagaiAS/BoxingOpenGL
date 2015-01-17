@@ -1,3 +1,4 @@
+#pragma once
 #include "Globals.h"
 
 const GLdouble ARENA_SIZE = WINDOW_WIDTH / 5;

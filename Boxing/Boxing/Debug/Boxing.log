@@ -1,257 +1,150 @@
-﻿Build started 02/01/2015 16:46:48.
-     1>Project "C:\Users\Chicko loco\Source\Repos\BoxingOpenGL\Boxing\Boxing\Boxing.vcxproj" on node 2 (Build target(s)).
+﻿Build started 17/01/2015 14:54:30.
+     1>Project "C:\BoxingOpenGL\Boxing\Boxing\Boxing.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Visual Studio Ultimate 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /showIncludes /analyze- /errorReport:prompt Boxers.cpp Boxing.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /showIncludes /analyze- /errorReport:prompt Boxing.cpp
          Boxing.cpp
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Entrance.h
-         Note: including file:  c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Globals.h
-         Note: including file:   D:\Visual Studio Ultimate 2013\VC\include\iostream
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\istream
-         Note: including file:     D:\Visual Studio Ultimate 2013\VC\include\ostream
-         Note: including file:      D:\Visual Studio Ultimate 2013\VC\include\ios
-         Note: including file:       D:\Visual Studio Ultimate 2013\VC\include\xlocnum
-         Note: including file:        D:\Visual Studio Ultimate 2013\VC\include\climits
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\yvals.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\xkeycheck.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\sal.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\ConcurrencySal.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\vadefs.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\use_ansi.h
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\limits.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:        D:\Visual Studio Ultimate 2013\VC\include\cmath
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\math.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\xtgmath.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\xtr1common
-         Note: including file:        D:\Visual Studio Ultimate 2013\VC\include\cstdio
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\stdio.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\swprintf.inl
-         Note: including file:        D:\Visual Studio Ultimate 2013\VC\include\cstdlib
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\stdlib.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:        D:\Visual Studio Ultimate 2013\VC\include\streambuf
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\xiosbase
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\xlocale
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\cstring
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\string.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\stdexcept
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\exception
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\xstddef
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\cstddef
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\stddef.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\initializer_list
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\eh.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\malloc.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\xstring
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\xmemory0
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\limits
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\ymath.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\cfloat
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\float.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtwrn.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\cwchar
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\wchar.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\wtime.inl
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\new
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\xutility
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\utility
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\iosfwd
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtdbg.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\type_traits
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\xrefwrap
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\xatomic0.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\intrin.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\setjmp.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\immintrin.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\wmmintrin.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\nmmintrin.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\smmintrin.h
-         Note: including file:                   D:\Visual Studio Ultimate 2013\VC\include\tmmintrin.h
-         Note: including file:                    D:\Visual Studio Ultimate 2013\VC\include\pmmintrin.h
-         Note: including file:                     D:\Visual Studio Ultimate 2013\VC\include\emmintrin.h
-         Note: including file:                      D:\Visual Studio Ultimate 2013\VC\include\xmmintrin.h
-         Note: including file:                       D:\Visual Studio Ultimate 2013\VC\include\mmintrin.h
-         Note: including file:                        D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\ammintrin.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\mm3dnow.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\typeinfo
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\xlocinfo
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\xlocinfo.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\ctype.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\locale.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\xdebug
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\xmemory
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\xfacet
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\system_error
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\cerrno
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\errno.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\share.h
-         Note: including file:   D:\Visual Studio Ultimate 2013\VC\include\time.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\time.inl
-         Note: including file:   D:\Visual Studio Ultimate 2013\VC\include\glut.h
+         Note: including file: c:\boxingopengl\boxing\boxing\Init.h
+         Note: including file:  c:\boxingopengl\boxing\boxing\Globals.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iostream
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\istream
+         Note: including file:     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ostream
+         Note: including file:      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ios
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocnum
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\climits
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\yvals.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xkeycheck.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\sal.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ConcurrencySal.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\vadefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\use_ansi.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cmath
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xtgmath.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xtr1common
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdio
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\swprintf.inl
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstdlib
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\streambuf
+         Note: including file:         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xiosbase
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocale
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstring
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\string.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdexcept
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\exception
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstddef
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cstddef
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stddef.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\initializer_list
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\eh.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\malloc.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xstring
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmemory0
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\limits
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ymath.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cfloat
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\float.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtwrn.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cwchar
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wchar.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wtime.inl
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\new
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xutility
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\utility
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\iosfwd
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdbg.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\type_traits
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xrefwrap
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xatomic0.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\intrin.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\setjmp.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\immintrin.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\wmmintrin.h
+         Note: including file:                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\nmmintrin.h
+         Note: including file:                  C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\smmintrin.h
+         Note: including file:                   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\tmmintrin.h
+         Note: including file:                    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\pmmintrin.h
+         Note: including file:                     C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\emmintrin.h
+         Note: including file:                      C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmmintrin.h
+         Note: including file:                       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mmintrin.h
+         Note: including file:                        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ammintrin.h
+         Note: including file:               C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\mm3dnow.h
+         Note: including file:                C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\typeinfo
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocinfo
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xlocinfo.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\ctype.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\locale.h
+         Note: including file:              C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xdebug
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xmemory
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\xfacet
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\system_error
+         Note: including file:           C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\cerrno
+         Note: including file:            C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\errno.h
+         Note: including file:             C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\share.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\time.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\time.inl
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\glut.h
          Note: including file:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\GL/gl.h
          Note: including file:     C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
          Note: including file:    C:\Program Files (x86)\Windows Kits\8.1\Include\um\GL/glu.h
-         Note: including file:   D:\Visual Studio Ultimate 2013\VC\include\math.h
-         Note: including file:   D:\Visual Studio Ultimate 2013\VC\include\stdarg.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Arena.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Tribune.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\World.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Inputs.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Boxers.h
-         Note: including file:  c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Body.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Crowd.h
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\ImageLoader.h
-         Note: including file:  D:\Visual Studio Ultimate 2013\VC\include\assert.h
-         Note: including file:   D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:  D:\Visual Studio Ultimate 2013\VC\include\fstream
-         Boxers.cpp
-         Note: including file: c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Boxers.h
-         Note: including file:  c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Body.h
-         Note: including file:   c:\users\chicko loco\source\repos\boxingopengl\boxing\boxing\Globals.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\iostream
-         Note: including file:     D:\Visual Studio Ultimate 2013\VC\include\istream
-         Note: including file:      D:\Visual Studio Ultimate 2013\VC\include\ostream
-         Note: including file:       D:\Visual Studio Ultimate 2013\VC\include\ios
-         Note: including file:        D:\Visual Studio Ultimate 2013\VC\include\xlocnum
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\climits
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\yvals.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\xkeycheck.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\sal.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\ConcurrencySal.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\vadefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\use_ansi.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\limits.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\cmath
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\math.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\xtgmath.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\xtr1common
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\cstdio
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\stdio.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\swprintf.inl
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\cstdlib
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\stdlib.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:         D:\Visual Studio Ultimate 2013\VC\include\streambuf
-         Note: including file:          D:\Visual Studio Ultimate 2013\VC\include\xiosbase
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\xlocale
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\cstring
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\string.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\stdexcept
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\exception
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\xstddef
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\cstddef
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\stddef.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\initializer_list
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\eh.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\malloc.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\xstring
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\xmemory0
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\limits
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\ymath.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\cfloat
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\float.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\crtwrn.h
-         Note: including file:                   D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\cwchar
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\wchar.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\wtime.inl
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\new
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\xutility
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\utility
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\iosfwd
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\crtdbg.h
-         Note: including file:                   D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\type_traits
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\xrefwrap
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\xatomic0.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\intrin.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\setjmp.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\immintrin.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\wmmintrin.h
-         Note: including file:                  D:\Visual Studio Ultimate 2013\VC\include\nmmintrin.h
-         Note: including file:                   D:\Visual Studio Ultimate 2013\VC\include\smmintrin.h
-         Note: including file:                    D:\Visual Studio Ultimate 2013\VC\include\tmmintrin.h
-         Note: including file:                     D:\Visual Studio Ultimate 2013\VC\include\pmmintrin.h
-         Note: including file:                      D:\Visual Studio Ultimate 2013\VC\include\emmintrin.h
-         Note: including file:                       D:\Visual Studio Ultimate 2013\VC\include\xmmintrin.h
-         Note: including file:                        D:\Visual Studio Ultimate 2013\VC\include\mmintrin.h
-         Note: including file:                         D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\ammintrin.h
-         Note: including file:                D:\Visual Studio Ultimate 2013\VC\include\mm3dnow.h
-         Note: including file:                 D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\typeinfo
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\xlocinfo
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\xlocinfo.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\ctype.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\locale.h
-         Note: including file:               D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\xdebug
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\xmemory
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\xfacet
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\system_error
-         Note: including file:            D:\Visual Studio Ultimate 2013\VC\include\cerrno
-         Note: including file:             D:\Visual Studio Ultimate 2013\VC\include\errno.h
-         Note: including file:              D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:           D:\Visual Studio Ultimate 2013\VC\include\share.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\time.h
-         Note: including file:     D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Note: including file:     D:\Visual Studio Ultimate 2013\VC\include\time.inl
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\glut.h
-         Note: including file:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\GL/gl.h
-         Note: including file:      C:\Program Files (x86)\Windows Kits\8.1\Include\shared\winapifamily.h
-         Note: including file:     C:\Program Files (x86)\Windows Kits\8.1\Include\um\GL/glu.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\math.h
-         Note: including file:    D:\Visual Studio Ultimate 2013\VC\include\stdarg.h
-         Note: including file:     D:\Visual Studio Ultimate 2013\VC\include\crtdefs.h
-         Generating Code...
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\math.h
+         Note: including file:   C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdarg.h
+         Note: including file:    C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:  c:\boxingopengl\boxing\boxing\Input.h
+         Note: including file:   c:\boxingopengl\boxing\boxing\Output.h
+         Note: including file:    c:\boxingopengl\boxing\boxing\Camera.h
+         Note: including file:    c:\boxingopengl\boxing\boxing\Animation.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Entrance.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Arena.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Tribune.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\World.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Boxers.h
+         Note: including file:      c:\boxingopengl\boxing\boxing\Body.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Crowd.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Textures.h
+         Note: including file:      c:\boxingopengl\boxing\boxing\RgbImage.h
+         Note: including file:       C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\assert.h
+         Note: including file:        C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\crtdefs.h
+         Note: including file:    c:\boxingopengl\boxing\boxing\Views.h
+         Note: including file:     c:\boxingopengl\boxing\boxing\Print.h
        Link:
-         D:\Visual Studio Ultimate 2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Chicko loco\Source\Repos\BoxingOpenGL\Boxing\Debug\Boxing.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Chicko loco\Source\Repos\BoxingOpenGL\Boxing\Debug\Boxing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Chicko loco\Source\Repos\BoxingOpenGL\Boxing\Debug\Boxing.lib" /MACHINE:X86 Debug\Body.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\BoxingOpenGL\Boxing\Debug\Boxing.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\BoxingOpenGL\Boxing\Debug\Boxing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\BoxingOpenGL\Boxing\Debug\Boxing.lib" /MACHINE:X86 Debug\Body.obj
          Debug\Boxers.obj
          Debug\Boxing.obj
          Debug\Arena.obj
          Debug\Camera.obj
          Debug\Crowd.obj
          Debug\Entrance.obj
-         Debug\ImageLoader.obj
-         Debug\Inputs.obj
+         Debug\RgbImage.obj
+         Debug\Animation.obj
          Debug\Tribune.obj
          Debug\World.obj
-         Boxing.vcxproj -> C:\Users\Chicko loco\Source\Repos\BoxingOpenGL\Boxing\Debug\Boxing.exe
-     1>Done Building Project "C:\Users\Chicko loco\Source\Repos\BoxingOpenGL\Boxing\Boxing\Boxing.vcxproj" (Build target(s)).
+         Boxing.vcxproj -> C:\BoxingOpenGL\Boxing\Debug\Boxing.exe
+     1>Done Building Project "C:\BoxingOpenGL\Boxing\Boxing\Boxing.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.11
+Time Elapsed 00:00:00.94

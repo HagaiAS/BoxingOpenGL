@@ -1,3 +1,4 @@
+#pragma once
 #include "Boxers.h"
 
 class Crowd : public Body

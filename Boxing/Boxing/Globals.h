@@ -13,6 +13,7 @@
 #define WINDOW_WIDTH	1280
 #define WINDOW_POS_X	10
 #define WINDOW_POS_Y	10
+
 #define Pi				3.14159
 #define START_ANGLE		0.0
 #define TIMERMSECS		30 
@@ -20,7 +21,8 @@
 #define NUM_OF_WORLD_TEXTURES 2
 #define NUM_OF_FLOOR_TILES 12
 #define BOXERS_MIN_DISTANCE 25
-
+#define SUB_WINDOW_WIDTH		1000
+#define SIDE_MENU_WINDOW_WIDTH	280
 // Do not change these values - it is relevant for the specific scene
 #define TIME_DELTA 0.1
 #define TIME_PARTS 3
@@ -80,3 +82,13 @@ extern GLfloat BoxerAng1[17];
 extern GLfloat BoxerAng2[17];
 extern GLuint worldTextures[NUM_OF_WORLD_TEXTURES];
 const GLdouble ARENA_SIZE_C = WINDOW_WIDTH / 5;
+
+enum View { Parent, Intro, ViewMode, PlayMode, SideHelpMenu };
+
+// struct for coordinates x, y, z 
+struct GLfloatPoint
+{
+	GLfloat x;
+	GLfloat y;
+	GLfloat z;
+};

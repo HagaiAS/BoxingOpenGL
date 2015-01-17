@@ -17,7 +17,7 @@
 * Web page: http://math.ucsd.edu/~sbuss/MathCG
 *
 */
-
+#pragma once
 #ifndef RGBIMAGE_H
 #define RGBIMAGE_H
 
