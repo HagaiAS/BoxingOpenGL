@@ -14,6 +14,7 @@ void WelcomeIntroWindow(void)
 		{ " Menu: " },
 		{ " F1 -> View Mode " },
 		{ " F2 -> Play Mode " },
+		{ " H  -> Help " },
 		{ "	F4 -> Exit " }
 	};
 
@@ -38,7 +39,7 @@ void WelcomeIntroWindow(void)
 	GLfloatPoint creditHeaderItems = { -16, -16, 0.0 };
 	printMenuItems(headerItems, 2, creditHeaderItems);
 
-	GLfloatPoint boxerLogoLocation = { -12.0, 1.5, 0.0 };
+	GLfloatPoint boxerLogoLocation = { -12.0, -1.0, 0.0 };
 	GLfloatPoint boxerScaleLogo = { 0.04, 0.06, 0 };
 	int boxerStrokeSize = 24;
 	GLfloat boxerDelta = 4;
@@ -48,8 +49,8 @@ void WelcomeIntroWindow(void)
 
 	PrintStrokeText(line, lineLocation, movieLogoColor, { 0.02, 0.02, 0.0 }, 14, 1.45, false);
 
-	GLfloatPoint menuLocation = { -8.2, 8, 0.0 };
-	printMenuItems(menuItems, 3, menuLocation);
+	GLfloatPoint menuLocation = { -8.2, 5, 0.0 };
+	printMenuItems(menuItems, 4, menuLocation);
 }
 
 void KnockoutWindow(void)
@@ -166,18 +167,12 @@ void HelpSubWindow(void)
 		{ "Esc -> Back To Menu" }
 	};
 
-	char* movementLMenuItems[] = {
+	char* movementMenuItems[] = {
 		{ "Movement:" },
-		{ "W/S ->" },
-		{ "SPACE ->" },
-		{ "PAGE UP/PAGE DOWN ->" },
-		{ "Left/Right/Up/Down Arrow Keys ->" }
-	};
-
-	char* movementRMenuItems[] = {
-		{ "Move Forward/Backward" },
-		{ "Activate Top View" },
-		{ "Move Up/Down" },
+		{ "W/S -> Move Forward/Backward" },
+		{ "SPACE -> Activate Top View" },
+		{ "PAGE UP/PAGE DOWN -> Move Up/Down" },
+		{ "Left/Right/Up/Down Arrow Keys ->" },
 		{ "Look At The Specific Direction" }
 	};
 
@@ -193,7 +188,7 @@ void HelpSubWindow(void)
 	char* playMenuItems[] = {
 		{ "Play Mode:" },
 		{ "Up/Down Arrow Keys ->" },
-		{ "Speed Up/ Slow Down Animation" }		
+		{ "Speed Up/ Slow Down Animation" }
 	};
 
 
@@ -202,9 +197,7 @@ void HelpSubWindow(void)
 
 	GLfloatPoint movementMenuLocation = creditHeaderItems;
 	movementMenuLocation.y += 5.5;
-	printHelpMenuItems(movementLMenuItems, 5, movementMenuLocation);
-	movementMenuLocation.x += 10;
-	printHelpMenuItems(movementRMenuItems, 5, movementMenuLocation,true);
+	printHelpMenuItems(movementMenuItems, 5, movementMenuLocation);
 
 	GLfloatPoint cameraMenuLocation = movementMenuLocation;
 	cameraMenuLocation.y += 16.5;
