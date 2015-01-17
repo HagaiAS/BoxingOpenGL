@@ -99,7 +99,7 @@ void Display_View_Mode(void)
 	{
 		glClearColor(1, 0.5, 0, 1);  //orange
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		ViewModeSubWindow();
+		//ViewModeSubWindow();
 		glutSwapBuffers();
 	}
 }
@@ -110,7 +110,7 @@ void Display_Play_Mode(void)
 	{
 		glClearColor(0, 0, 1, 1); //black
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		PlayModeSubWindow();
+		//PlayModeSubWindow();		
 		glutSwapBuffers();
 	}
 }
@@ -131,39 +131,81 @@ void SwitchWindows(View activeView)
 	switch (activeView)
 	{
 	case Parent:
-		parentHidden = false;
-		introHidden = true;
-		viewModeHidden = true;
-		playModeHidden = true;
-		helpMenuHidden = true;
+
+		parentHidden = !parentHidden;
+
+		if (!parentHidden)
+		{
+			introHidden = true;
+			viewModeHidden = true;
+			playModeHidden = true;
+			helpMenuHidden = true;
+		}
+
+		Display_Parent();
 		break;
 	case Intro:
-		parentHidden = false;
-		introHidden = false;
-		viewModeHidden = true;
-		playModeHidden = true;
-		helpMenuHidden = true;
+
+		introHidden = !introHidden;
+
+		if (!introHidden)
+		{
+			parentHidden = true;
+			viewModeHidden = true;
+			playModeHidden = true;
+			helpMenuHidden = true;
+		}
+
+		Display_Intro();
 		break;
+
 	case ViewMode:
-		parentHidden = false;
-		introHidden = true;
-		viewModeHidden = false;
-		playModeHidden = true;
-		helpMenuHidden = true;
+
+		viewModeHidden = !viewModeHidden;
+
+		if (!viewModeHidden)
+		{
+			parentHidden = false;
+			helpMenuHidden = true;
+			introHidden = true;
+			boxersAnimationOn = false;
+			crowdAnimationOn = false;
+		}
+		Display_Intro();
+		Display_View_Mode();
 		break;
+
 	case PlayMode:
-		parentHidden = false;
-		introHidden = true;
-		viewModeHidden = true;
-		playModeHidden = false;
-		helpMenuHidden = true;
+
+		playModeHidden = !playModeHidden;
+
+		if (!playModeHidden)
+		{
+			parentHidden = false;
+			introHidden = true;
+			viewModeHidden = true;
+			helpMenuHidden = true;
+			boxersAnimationOn = true;
+			crowdAnimationOn = true;
+		}
+		Display_Intro();
+		Display_Play_Mode();
+
 		break;
 	case SideHelpMenu:
-		parentHidden = false;
-		introHidden = true;
-		viewModeHidden = true;
-		playModeHidden = false;
-		helpMenuHidden = true;
+
+		helpMenuHidden = !helpMenuHidden;
+		
+		if (!helpMenuHidden)
+		{	
+			parentHidden = false;
+			introHidden = true;
+			viewModeHidden = true;
+			playModeHidden = true;
+		}
+		Display_Intro();
+		Display_Help();
+
 		break;
 
 	default:
@@ -215,3 +257,4 @@ void printInstructions()
 		<< "In animate mode:" << endl
 		<< "Press the up/down arrow keys to speed up/slow down animation." << endl;
 }
+

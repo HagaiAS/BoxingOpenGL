@@ -2,7 +2,6 @@
 #include "Globals.h"
 #include "Output.h"
 
-
 //---------------------------------------------------------
 //               INPUTS - KEYBOARD, MENU AND INSTRUCTIONS
 //---------------------------------------------------------
@@ -15,16 +14,13 @@ void keyboard(unsigned char key, int x, int y)
 
 		// 
 	case 27:
-		introHidden = !introHidden;
-		Display_Intro();
+		SwitchWindows(Intro);
 		break;
 
 		//move forward.
 	case 'H':
 	case 'h':
-		helpMenuHidden = !helpMenuHidden;
-		Display_Help();
-
+		SwitchWindows(SideHelpMenu);
 		break;
 
 		// If SPACE -> activate top view
@@ -39,7 +35,6 @@ void keyboard(unsigned char key, int x, int y)
 			camera.topView();
 			isTopViewActive = true;
 		}
-
 		break;
 
 		// If 1 -> activate camera side view
@@ -131,13 +126,13 @@ void special_key_input(int key, int x, int y)
 
 	if (key == GLUT_KEY_F1)
 	{
-		viewModeHidden = !viewModeHidden;
-		Display_View_Mode();
+
+		SwitchWindows(ViewMode);
+
 	}
 	if (key == GLUT_KEY_F2)
 	{
-		playModeHidden = !playModeHidden;
-		Display_Play_Mode();
+		SwitchWindows(PlayMode);
 	}
 
 	if (key == GLUT_KEY_F4)

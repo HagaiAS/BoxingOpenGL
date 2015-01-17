@@ -21,8 +21,8 @@
 #define NUM_OF_WORLD_TEXTURES 2
 #define NUM_OF_FLOOR_TILES 12
 #define BOXERS_MIN_DISTANCE 25
-#define SUB_WINDOW_WIDTH		1000
-#define SIDE_MENU_WINDOW_WIDTH	280
+#define INTRO_WINDOW_WIDTH		1080
+#define INTRO_WINDOW_HEIGHT		568
 // Do not change these values - it is relevant for the specific scene
 #define TIME_DELTA 0.1
 #define TIME_PARTS 3

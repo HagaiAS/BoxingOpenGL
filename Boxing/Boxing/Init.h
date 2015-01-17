@@ -43,8 +43,10 @@ void my_init(void)
 	glOrtho(LEFT_EDGE, RIGHT_EDGE, BOTTOM_EDGE, TOP_EDGE, OUTSIDE_EDGE, INSIDE_EDGE); // 3D axes definition
 	glEnable(GL_DEPTH_TEST);  //for 3D work
 }
-
-void Intro_Init(void)
+//------------------------------------------------
+//                Init FUNCTIONS
+//------------------------------------------------
+void View_Init(void)
 {
 	//glEnable(GL_DEPTH_TEST);
 	glMatrixMode(GL_PROJECTION);
@@ -52,40 +54,35 @@ void Intro_Init(void)
 	glOrtho(-25, 25, -25, 25, -25, 25);
 	glMatrixMode(GL_MODELVIEW);
 }
-
-void Init_View_Mode()
-{
-	// View Mode subwindow 
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	viewMode = glutCreateSubWindow(parent, 5, 5, WINDOW_WIDTH, WINDOW_HEIGHT);   //---View Mode gets 2 
-	Intro_Init();
-	glutDisplayFunc(Display_View_Mode);
-	//glutIdleFunc(rotate);
-	//glutMouseFunc(direct_1);
-	glutKeyboardFunc(keyboard);	// keyboard callback
-}
-
-void Init_View_Play()
-{
-	// Play Mode subwindow 
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	playMode = glutCreateSubWindow(parent, 5, 5, WINDOW_WIDTH, WINDOW_HEIGHT); //---Play Mode gets 3
-	Intro_Init();
-	glutDisplayFunc(Display_Play_Mode);
-	//glutIdleFunc(rotate);
-	//glutMouseFunc(direct_2);
-	glutSpecialFunc(special_key_input);
-	glutKeyboardFunc(keyboard);  // keyboard callback
-}
+//
+//void Init_View_Mode()
+//{
+//	// View Mode subwindow 
+//	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+//	viewMode = glutCreateSubWindow(parent, 5, 5, WINDOW_WIDTH, WINDOW_HEIGHT);   //---View Mode gets 2 
+//	View_Init();
+//	glutDisplayFunc(Display_View_Mode);
+//	glutKeyboardFunc(keyboard);	// keyboard callback
+//}
+//
+//void Init_View_Play()
+//{
+//	// Play Mode subwindow 
+//	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+//	playMode = glutCreateSubWindow(parent, 5, 5, WINDOW_WIDTH, WINDOW_HEIGHT); //---Play Mode gets 3
+//	View_Init();
+//	glutDisplayFunc(Display_Play_Mode);
+//	glutSpecialFunc(special_key_input);
+//	glutKeyboardFunc(keyboard);  // keyboard callback
+//}
 
 void Init_Help_Menu()
 {
 	// Menu side sub window 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	sideHelpMenu = glutCreateSubWindow(parent, 5, 5, WINDOW_WIDTH, WINDOW_HEIGHT);  //---help menu gets 4
-	Intro_Init();
+	sideHelpMenu = glutCreateSubWindow(parent, 0, 0, WINDOW_WIDTH, WINDOW_WIDTH);  //---help menu gets 4
+	View_Init();
 	glutDisplayFunc(Display_Help);
-	//glutMouseFunc(direct_2);
 	glutSpecialFunc(special_key_input);
 	glutKeyboardFunc(keyboard);  // keyboard callback
 }
@@ -125,8 +122,8 @@ void Init_Intro()
 {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	// Define the window size and position on the screen
-	intro = glutCreateSubWindow(parent, 5, 5, WINDOW_WIDTH, WINDOW_HEIGHT);
-	Intro_Init();
+	intro = glutCreateSubWindow(parent, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+	View_Init();
 	glutDisplayFunc(Display_Intro);
 	glutSpecialFunc(special_key_input);
 	glutKeyboardFunc(keyboard);	 // keyboard callback
