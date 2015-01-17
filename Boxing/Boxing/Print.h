@@ -111,20 +111,35 @@ void printMenuItems(char* menuItems[],
 void printHelpMenuItems(char* menuItems[],
 	int numOfItems,
 	GLfloatPoint menuLocation,
+	bool IsRight = false,
 	GLfloatPoint scaleHeaderMenuItem = { 0.01, 0.02, 0.0 },
 	GLfloatPoint colorHeaderMenuItem = { 0.0, 1.0, 0.2 })
 {
 	GLfloat delta = 2.8;
 	GLfloat alfa = -0.05;
 	GLfloat shadow = -0.05;
-	GLfloatPoint titleLocation = menuLocation;
-	PrintStrokeText(menuItems[0], titleLocation, colorHeaderMenuItem, scaleHeaderMenuItem, 8, 1.35);
 
-	for (int i = 1; i <= numOfItems; i++)
+	if (IsRight)
 	{
-		char* item = menuItems[i];
-		GLfloatPoint itemLocation = menuLocation;
-		itemLocation.y += delta * i;
-		PrintStrokeText(item, itemLocation, { 0.0, 0.0, 0.0 }, scaleHeaderMenuItem, 8, 1.2, false, {1.0,1.0,1.0});
+		for (int i = 1; i <= numOfItems; i++)
+		{
+			char* item = menuItems[i];
+			GLfloatPoint itemLocation = menuLocation;
+			itemLocation.y += delta * i;
+			PrintStrokeText(item, itemLocation, { 1.0, 1.0, 1.0 }, scaleHeaderMenuItem, 8, 1.2, false, { 0.0, 0.0, 0.0 });
+		}
+	}
+	else
+	{
+		GLfloatPoint titleLocation = menuLocation;
+		PrintStrokeText(menuItems[0], titleLocation, colorHeaderMenuItem, scaleHeaderMenuItem, 8, 1.35);
+
+		for (int i = 1; i <= numOfItems; i++)
+		{
+			char* item = menuItems[i];
+			GLfloatPoint itemLocation = menuLocation;
+			itemLocation.y += delta * i;
+			PrintStrokeText(item, itemLocation, { 0.0, 0.0, 0.0 }, scaleHeaderMenuItem, 8, 1.2, false, {1.0,1.0,1.0});
+		}
 	}
 }

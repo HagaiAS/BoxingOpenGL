@@ -52,6 +52,17 @@ void WelcomeIntroWindow(void)
 	printMenuItems(menuItems, 3, menuLocation);
 }
 
+void KnockoutWindow(void)
+{
+
+	GLfloatPoint boxerLogoLocation = { -12.0, 1.5, 0.0 };
+	GLfloatPoint boxerScaleLogo = { 0.04, 0.06, 0 };
+	int boxerStrokeSize = 24;
+	GLfloat boxerDelta = 4;
+	GLfloatPoint movieLogoColor = { 0, 0.5, 0.8 };
+	PrintStrokeText("K.O.", boxerLogoLocation, movieLogoColor, boxerScaleLogo, boxerStrokeSize, boxerDelta, true);
+}
+
 void ViewModeSubWindow(void)
 {
 	char* headerItems[] = {
@@ -155,21 +166,20 @@ void HelpSubWindow(void)
 		{ "Esc -> Back To Menu" }
 	};
 
-	char* movementMenuItems[] = {
+	char* movementLMenuItems[] = {
 		{ "Movement:" },
-		{ "W/S -> Move Forward/Backward" },
-		{ "SPACE -> Activate Top View" },
-		{ "PAGE UP/PAGE DOWN -> Move Up/Down" },
-		{ "Left/Right/Up/Down Arrow Keys ->" },
-		{ "Look At The Specific Direction" }
+		{ "W/S ->" },
+		{ "SPACE ->" },
+		{ "PAGE UP/PAGE DOWN ->" },
+		{ "Left/Right/Up/Down Arrow Keys ->" }
 	};
 
-	//char* movementRMenuItems[] = {
-	//	{ "Move Forward/Backward" },
-	//	{ "Activate Top View" },
-	//	{ "Move Up/Down" },
-	//	{ "Look At The Specific Direction" }
-	//};
+	char* movementRMenuItems[] = {
+		{ "Move Forward/Backward" },
+		{ "Activate Top View" },
+		{ "Move Up/Down" },
+		{ "Look At The Specific Direction" }
+	};
 
 	char* cameraMenuItems[] = {
 		{ "Camera:" },
@@ -192,7 +202,9 @@ void HelpSubWindow(void)
 
 	GLfloatPoint movementMenuLocation = creditHeaderItems;
 	movementMenuLocation.y += 5.5;
-	printHelpMenuItems(movementMenuItems, 5, movementMenuLocation);
+	printHelpMenuItems(movementLMenuItems, 5, movementMenuLocation);
+	movementMenuLocation.x += 10;
+	printHelpMenuItems(movementRMenuItems, 5, movementMenuLocation,true);
 
 	GLfloatPoint cameraMenuLocation = movementMenuLocation;
 	cameraMenuLocation.y += 16.5;
